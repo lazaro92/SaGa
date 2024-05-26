@@ -5,4 +5,8 @@ project(example
 )
 
 add_subdirectory(dependencies)
-add_subdirectory(src)
+
+
+add_executable(example_exe main.cpp)
+target_link_libraries(example_exe PRIVATE sfml-graphics)
+
