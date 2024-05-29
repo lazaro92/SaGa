@@ -21,6 +21,7 @@ add_executable(SaGa_exe
   src/State.cpp
   src/StateStack.cpp
   src/Utility.cpp
+  src/World.cpp
 )
 
 target_include_directories(SaGa_exe

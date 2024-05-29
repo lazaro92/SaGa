@@ -21,7 +21,7 @@ Application::Application()
 	mWindow.setKeyRepeatEnabled(false);
 	mWindow.setVerticalSyncEnabled(true);
 
-	mFonts.load(Fonts::Main, 	"media/Sansation.ttf");
+	mFonts.load(Fonts::Main, "media/Sansation.ttf");
 
 	// load GUI textures
 
