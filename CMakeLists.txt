@@ -8,6 +8,7 @@ add_subdirectory(dependencies)
 
 add_executable(SaGa_exe
   src/Application.cpp
+  src/Character.cpp
   src/Command.cpp
   src/CommandQueue.cpp
   src/Entity.cpp

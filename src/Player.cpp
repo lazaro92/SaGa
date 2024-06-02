@@ -1,5 +1,6 @@
 #include <Game/Player.hpp>
 #include <Game/CommandQueue.hpp>
+#include <Game/Character.hpp>
 
 #include <map>
 #include <string>
@@ -7,25 +8,36 @@
 
 using namespace std::placeholders;
 
+struct PlayerMover
+{
+	PlayerMover(float vx, float vy)
+	: velocity(vx, vy)
+	{
+	}
+
+	void operator() (Character& character, sf::Time) const
+	{
+		character.accelerate(velocity * 200.f);
+	}
+
+	sf::Vector2f velocity;
+};
 
 
 Player::Player()
-: mCurrentMissionStatus(MissionRunning)
 {
 	// Set initial key bindings
 	mKeyBinding[sf::Keyboard::Left] = MoveLeft;
 	mKeyBinding[sf::Keyboard::Right] = MoveRight;
 	mKeyBinding[sf::Keyboard::Up] = MoveUp;
 	mKeyBinding[sf::Keyboard::Down] = MoveDown;
-	mKeyBinding[sf::Keyboard::Space] = Fire;
-	mKeyBinding[sf::Keyboard::M] = LaunchMissile;
  
 	// Set initial action bindings
 	initializeActions();	
 
-	// Assign all categories to player's aircraft
+	// Assign all categories to player's character
 	for(auto& pair: mActionBinding)
-		pair.second.category = Category::PlayerAircraft;
+		pair.second.category = Category::PlayerCharacter;
 }
 
 void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
@@ -76,18 +88,13 @@ sf::Keyboard::Key Player::getAssignedKey(Action action) const
 	return sf::Keyboard::Unknown;
 }
 
-void Player::setMissionStatus(MissionStatus status)
-{
-	mCurrentMissionStatus = status;
-}
-
-Player::MissionStatus Player::getMissionStatus() const
-{
-	return mCurrentMissionStatus;
-}
-
 void Player::initializeActions()
 {
+	mActionBinding[MoveLeft].action      = derivedAction<Character>(PlayerMover(-1,  0));
+	mActionBinding[MoveRight].action     = derivedAction<Character>(PlayerMover(+1,  0));
+	mActionBinding[MoveUp].action        = derivedAction<Character>(PlayerMover( 0, -1));
+	mActionBinding[MoveDown].action      = derivedAction<Character>(PlayerMover( 0, +1));
+
 }
 
 bool Player::isRealtimeAction(Action action)
@@ -98,7 +105,6 @@ bool Player::isRealtimeAction(Action action)
 		case MoveRight:
 		case MoveDown:
 		case MoveUp:
-		case Fire:
 			return true;
 
 		default:

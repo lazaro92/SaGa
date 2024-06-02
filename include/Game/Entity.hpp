@@ -7,7 +7,7 @@
 class Entity : public SceneNode
 {
 	public:
-		explicit			Entity(int hitpoints);
+		explicit			Entity();
 
 		void				setVelocity(sf::Vector2f velocity);
 		void				setVelocity(float vx, float vy);
@@ -15,21 +15,12 @@ class Entity : public SceneNode
 		void				accelerate(float vx, float vy);
 		sf::Vector2f		getVelocity() const;
 
-		int					getHitpoints() const;
-		void				repair(int points);
-		void				damage(int points);
-		void				destroy();
-		virtual void		remove();
-		virtual bool		isDestroyed() const;
-
-
 	protected:
 		virtual void		updateCurrent(sf::Time dt, CommandQueue& commands);
 
 
 	private:
 		sf::Vector2f		mVelocity;
-		int					mHitpoints;
 };
 
 #endif // GAME_ENTITY_HPP

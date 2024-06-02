@@ -5,6 +5,7 @@
 #include <Game/ResourceIdentifiers.hpp>
 #include <Game/SceneNode.hpp>
 #include <Game/SpriteNode.hpp>
+#include <Game/Character.hpp>
 #include <Game/CommandQueue.hpp>
 #include <Game/Command.hpp>
 
@@ -23,6 +24,8 @@ class World : private sf::NonCopyable {
 		CommandQueue&						getCommandQueue();
 
 	private:
+		void                                loadTextures();
+		void                                buildScene();
 
 	private:
 		enum Layer
@@ -38,12 +41,13 @@ class World : private sf::NonCopyable {
 		sf::View							mWorldView;
 		TextureHolder						mTextures;
 
+		sf::Vector2f						mSpawnPosition;
+
 		SceneNode							mSceneGraph;
 		std::array<SceneNode*, LayerCount>	mSceneLayers;
 		CommandQueue						mCommandQueue;
 
-		// TODO Character
-        //Aircraft*							mPlayerAircraft;
+        Character*							mPlayerCharacter;
 };
 
 
