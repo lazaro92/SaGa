@@ -94,7 +94,6 @@ void Player::initializeActions()
 	mActionBinding[MoveRight].action     = derivedAction<Character>(PlayerMover(+1,  0));
 	mActionBinding[MoveUp].action        = derivedAction<Character>(PlayerMover( 0, -1));
 	mActionBinding[MoveDown].action      = derivedAction<Character>(PlayerMover( 0, +1));
-
 }
 
 bool Player::isRealtimeAction(Action action)
