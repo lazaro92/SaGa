@@ -31,6 +31,11 @@ Player::Player()
 	mKeyBinding[sf::Keyboard::Right] = MoveRight;
 	mKeyBinding[sf::Keyboard::Up] = MoveUp;
 	mKeyBinding[sf::Keyboard::Down] = MoveDown;
+
+	mKeyBinding[sf::Keyboard::W] = FaceNorth;
+	mKeyBinding[sf::Keyboard::A] = FaceWest;
+	mKeyBinding[sf::Keyboard::S] = FaceSouth;
+	mKeyBinding[sf::Keyboard::D] = FaceEast;
  
 	// Set initial action bindings
 	initializeActions();	
@@ -94,6 +99,12 @@ void Player::initializeActions()
 	mActionBinding[MoveRight].action     = derivedAction<Character>(PlayerMover(+1,  0));
 	mActionBinding[MoveUp].action        = derivedAction<Character>(PlayerMover( 0, -1));
 	mActionBinding[MoveDown].action      = derivedAction<Character>(PlayerMover( 0, +1));
+
+	mActionBinding[FaceNorth].action     = derivedAction<Character>([] (Character& c, sf::Time) { c.setDirection(Character::Direction::North); });
+	mActionBinding[FaceEast].action      = derivedAction<Character>([] (Character& c, sf::Time) { c.setDirection(Character::Direction::East); });
+	mActionBinding[FaceSouth].action     = derivedAction<Character>([] (Character& c, sf::Time) { c.setDirection(Character::Direction::South); });
+	mActionBinding[FaceWest].action      = derivedAction<Character>([] (Character& c, sf::Time) { c.setDirection(Character::Direction::West); });
+
 }
 
 bool Player::isRealtimeAction(Action action)

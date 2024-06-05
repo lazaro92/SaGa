@@ -17,7 +17,15 @@ class Character : public Entity
             HumanFemale,
 			MutantMale,
 			MutantFemale,
-			TypeCount
+			TypeCount,
+		};
+
+		enum Direction
+		{
+			North,
+			East,
+			South,
+			West,
 		};
 
 
@@ -26,15 +34,17 @@ class Character : public Entity
 
 		virtual unsigned int	getCategory() const;
 
+	public:
+		void                    setDirection(Direction direction);
+
 	private:
 		virtual void			drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
 		virtual void 			updateCurrent(sf::Time dt, CommandQueue& commands);
 
 	private:
 		Type					mType;
+		Direction               mDirection;
 		sf::Sprite				mSprite;
-
-		std::size_t				mDirectionIndex;
 };
 
 #endif // GAME_CHARACTER_HPP

@@ -19,6 +19,12 @@ class Player
 			MoveRight,
 			MoveUp,
 			MoveDown,
+			
+			FaceNorth,
+			FaceEast,
+			FaceSouth,
+			FaceWest,
+
 			ActionCount
 		};
 

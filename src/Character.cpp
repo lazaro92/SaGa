@@ -13,7 +13,7 @@ Character::Character(Type type, const TextureHolder& textures)
 : Entity()
 , mType(type)
 , mSprite(textures.get(Textures::Characters), sf::IntRect(0, 0, 16, 16))
-, mDirectionIndex(0)
+, mDirection(Direction::South)
 {
 	centerOrigin(mSprite);
 }
@@ -31,5 +31,18 @@ void Character::updateCurrent(sf::Time dt, CommandQueue& commands)
 unsigned int Character::getCategory() const
 {
     return Category::PlayerCharacter;
+}
+
+void Character::setDirection(Direction direction) {
+    mDirection = direction;
+
+    if (Direction::North == direction)
+        mSprite.setTextureRect(sf::IntRect(96, 0, 16, 16));
+    else if (Direction::East == direction)
+        mSprite.setTextureRect(sf::IntRect(32, 0, 16, 16));
+    else if (Direction::South == direction)
+        mSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
+    else
+        mSprite.setTextureRect(sf::IntRect(64, 0, 16, 16));
 }
 

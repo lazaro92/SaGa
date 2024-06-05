@@ -1,4 +1,5 @@
 #include <Game/GameState.hpp>
+#include <Game/MusicPlayer.hpp>
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
@@ -8,6 +9,7 @@ GameState::GameState(StateStack& stack, Context context)
 , mWorld(*context.window)
 , mPlayer(*context.player)
 {
+	context.music->play(Music::Dungeon);
 }
 
 void GameState::draw()

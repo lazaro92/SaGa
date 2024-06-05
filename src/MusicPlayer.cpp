@@ -6,10 +6,7 @@ MusicPlayer::MusicPlayer()
 , mFilenames()
 , mVolume(100.f)
 {
-	// TODO ADD MUSIC THEMES
-	
-	// mFilenames[Music::MenuTheme]    = "media/music/MenuTheme.ogg";
-	// mFilenames[Music::MissionTheme] = "media/music/MissionTheme.ogg";
+	mFilenames[Music::Dungeon] = "media/music/dungeon.ogg";
 }
 
 void MusicPlayer::play(Music::ID theme)
