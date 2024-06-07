@@ -7,7 +7,7 @@
 const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
 
 Application::Application()
-: mWindow(sf::VideoMode(640, 480), "SaGa", sf::Style::Close)
+: mWindow(sf::VideoMode(854, 480), "SaGa", sf::Style::Close) // SNES -> 256x224
 , mTextures()
 , mFonts()
 , mPlayer()
