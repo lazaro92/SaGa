@@ -1,18 +1,26 @@
 #include <Game/Character.hpp>
+#include <Game/DataTables.hpp>
 #include <Game/Utility.hpp>
 #include <Game/CommandQueue.hpp>
 #include <Game/ResourceHolder.hpp>
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/Rect.hpp>
 
 
 using namespace std::placeholders;
 
+namespace
+{
+	const std::vector<CharacterData> Table = initializeCharacterData();
+}
+
+
 Character::Character(Type type, const TextureHolder& textures)
 : Entity()
 , mType(type)
-, mSprite(textures.get(Textures::Characters), sf::IntRect(0, 0, 16, 16))
+, mSprite(textures.get(Table[type].texture), Table[type].textureRect)
 , mDirection(Direction::South)
 {
 	centerOrigin(mSprite);
@@ -36,13 +44,17 @@ unsigned int Character::getCategory() const
 void Character::setDirection(Direction direction) {
     mDirection = direction;
 
+    sf::IntRect textureRect = Table[mType].textureRect;
+
     if (Direction::North == direction)
-        mSprite.setTextureRect(sf::IntRect(96, 0, 16, 16));
+        textureRect.left += 96;
     else if (Direction::East == direction)
-        mSprite.setTextureRect(sf::IntRect(32, 0, 16, 16));
+        textureRect.left += 32;
     else if (Direction::South == direction)
-        mSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
+        textureRect.left += 0;
     else
-        mSprite.setTextureRect(sf::IntRect(64, 0, 16, 16));
+        textureRect.left += 64;
+
+    mSprite.setTextureRect(textureRect);
 }
 

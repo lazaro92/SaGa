@@ -59,7 +59,7 @@ void World::buildScene()
 	}
 
 	// Add player's character
-	std::unique_ptr<Character> player(new Character(Character::HumanMale, mTextures));
+	std::unique_ptr<Character> player(new Character(Character::MutantMale, mTextures));
 	mPlayerCharacter = player.get();
 	mPlayerCharacter->setPosition(mSpawnPosition);
 	mSceneLayers[UpperAir]->attachChild(std::move(player));

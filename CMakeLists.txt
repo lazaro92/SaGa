@@ -11,6 +11,7 @@ add_executable(SaGa_exe
   src/Character.cpp
   src/Command.cpp
   src/CommandQueue.cpp
+  src/DataTables.cpp
   src/Entity.cpp
   src/GameState.cpp
   src/main.cpp
