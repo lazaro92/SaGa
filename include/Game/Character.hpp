@@ -11,46 +11,46 @@
 
 class Character : public Entity
 {
-	public:
-		enum Type
-		{
+    public:
+        enum Type
+        {
             HumanMale,
             HumanFemale,
-			MutantMale,
-			MutantFemale,
-			TypeCount,
-		};
+            MutantMale,
+            MutantFemale,
+            TypeCount,
+        };
 
-		enum Direction
-		{
-			North,
-			East,
-			South,
-			West,
-		};
+        enum Direction
+        {
+            North,
+            East,
+            South,
+            West,
+        };
 
 
-	public:
-								Character(Type type, const TextureHolder& textures);
+    public:
+                                Character(Type type, const TextureHolder& textures);
 
-		virtual unsigned int	getCategory() const;
+        virtual unsigned int    getCategory() const;
 
-	public:
-		void                    setDirection(Direction direction);
+    public:
+        void                    setDirection(Direction direction);
 
-	private:
-		virtual void			drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
-		virtual void 			updateCurrent(sf::Time dt, CommandQueue& commands);
+    private:
+        virtual void            drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+        virtual void            updateCurrent(sf::Time dt, CommandQueue& commands);
 
-	private:
-		void                    updateMovementSprite(sf::Time dt);
+    private:
+        void                    updateMovementSprite(sf::Time dt);
 
-	private:
-		Type					mType;
-		Direction               mDirection;
-		sf::Sprite				mSprite;
-		sf::Time                mMovementSpriteChangeTime;
-		bool                    mIsRightSpriteMovement;
+    private:
+        Type                    mType;
+        Direction               mDirection;
+        sf::Sprite              mSprite;
+        sf::Time                mMovementSpriteChangeTime;
+        bool                    mIsRightSpriteMovement;
 };
 
 #endif // GAME_CHARACTER_HPP
