@@ -17,37 +17,37 @@
 
 class World : private sf::NonCopyable {
     public:
-											World(sf::RenderTarget& outputTarget);
-		void								update(sf::Time dt);
-		void								draw();
-		
-		CommandQueue&						getCommandQueue();
+                                            World(sf::RenderTarget& outputTarget);
+        void                                update(sf::Time dt);
+        void                                draw();
+        
+        CommandQueue&                       getCommandQueue();
 
-	private:
-		void                                loadTextures();
-		void                                buildScene();
+    private:
+        void                                loadTextures();
+        void                                buildScene();
 
-	private:
-		enum Layer
-		{
-			Background,
-			LowerAir,
-			UpperAir,
-			LayerCount
-		};
+    private:
+        enum Layer
+        {
+            Background,
+            LowerAir,
+            UpperAir,
+            LayerCount
+        };
 
-	private:
-		sf::RenderTarget&					mTarget;
-		sf::View							mWorldView;
-		TextureHolder						mTextures;
+    private:
+        sf::RenderTarget&                   mTarget;
+        sf::View                            mWorldView;
+        TextureHolder                       mTextures;
 
-		sf::Vector2f						mSpawnPosition;
+        sf::Vector2f                        mSpawnPosition;
 
-		SceneNode							mSceneGraph;
-		std::array<SceneNode*, LayerCount>	mSceneLayers;
-		CommandQueue						mCommandQueue;
+        SceneNode                           mSceneGraph;
+        std::array<SceneNode*, LayerCount>  mSceneLayers;
+        CommandQueue                        mCommandQueue;
 
-        Character*							mPlayerCharacter;
+        Character*                          mPlayerCharacter;
 };
 
 

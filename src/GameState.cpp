@@ -9,29 +9,29 @@ GameState::GameState(StateStack& stack, Context context)
 , mWorld(*context.window)
 , mPlayer(*context.player)
 {
-	context.music->play(Music::Dungeon);
+    context.music->play(Music::Dungeon);
 }
 
 void GameState::draw()
 {
-	mWorld.draw();
+    mWorld.draw();
 }
 
 bool GameState::update(sf::Time dt)
 {
-	mWorld.update(dt);
+    mWorld.update(dt);
 
-	CommandQueue& commands = mWorld.getCommandQueue();
-	mPlayer.handleRealtimeInput(commands);
+    CommandQueue& commands = mWorld.getCommandQueue();
+    mPlayer.handleRealtimeInput(commands);
 
-	return true;
+    return true;
 }
 
 bool GameState::handleEvent(const sf::Event& event)
 {
-	// Game input handling
-	CommandQueue& commands = mWorld.getCommandQueue();
-	mPlayer.handleEvent(event, commands);
-	
-	return true;
+    // Game input handling
+    CommandQueue& commands = mWorld.getCommandQueue();
+    mPlayer.handleEvent(event, commands);
+    
+    return true;
 }

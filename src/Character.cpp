@@ -13,7 +13,7 @@ using namespace std::placeholders;
 
 namespace
 {
-	const std::vector<CharacterData> Table = initializeCharacterData();
+    const std::vector<CharacterData> Table = initializeCharacterData();
 }
 
 
@@ -25,7 +25,7 @@ Character::Character(Type type, const TextureHolder& textures)
 , mMovementSpriteChangeTime(sf::Time::Zero)
 , mIsRightSpriteMovement(false)
 {
-	centerOrigin(mSprite);
+    centerOrigin(mSprite);
 }
 
 void Character::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
@@ -36,7 +36,7 @@ void Character::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) c
 void Character::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
     updateMovementSprite(dt);
-	Entity::updateCurrent(dt, commands);
+    Entity::updateCurrent(dt, commands);
 }
 
 unsigned int Character::getCategory() const

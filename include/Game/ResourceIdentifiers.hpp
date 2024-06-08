@@ -5,60 +5,60 @@
 // Forward declaration of SFML classes
 namespace sf
 {
-	class Texture;
-	class Font;
-	class Shader;
-	class SoundBuffer;
+    class Texture;
+    class Font;
+    class Shader;
+    class SoundBuffer;
 }
 
 namespace Textures
 {
-	enum ID
-	{
-		Entities,
-		Characters,
-	};
+    enum ID
+    {
+        Entities,
+        Characters,
+    };
 }
 
 namespace Shaders
 {
-	enum ID
-	{
-		BrightnessPass,
-		DownSamplePass,
-		GaussianBlurPass,
-		AddPass,
-	};
+    enum ID
+    {
+        BrightnessPass,
+        DownSamplePass,
+        GaussianBlurPass,
+        AddPass,
+    };
 }
 
 namespace Fonts
 {
-	enum ID
-	{
-		Main,
-	};
+    enum ID
+    {
+        Main,
+    };
 }
 
 namespace SoundEffect
 {
-	enum ID
-	{
-		AlliedGunfire,
-		EnemyGunfire,
-		Explosion1,
-		Explosion2,
-		LaunchMissile,
-		CollectPickup,
-		Button,
-	};
+    enum ID
+    {
+        AlliedGunfire,
+        EnemyGunfire,
+        Explosion1,
+        Explosion2,
+        LaunchMissile,
+        CollectPickup,
+        Button,
+    };
 }
 
 namespace Music
 {
-	enum ID
-	{
-		Dungeon,
-	};
+    enum ID
+    {
+        Dungeon,
+    };
 }
 
 

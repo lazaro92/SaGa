@@ -24,20 +24,20 @@ State::~State()
 
 void State::requestStackPush(States::ID stateID)
 {
-	mStack->pushState(stateID);
+    mStack->pushState(stateID);
 }
 
 void State::requestStackPop()
 {
-	mStack->popState();
+    mStack->popState();
 }
 
 void State::requestStateClear()
 {
-	mStack->clearStates();
+    mStack->clearStates();
 }
 
 State::Context State::getContext() const
 {
-	return mContext;
+    return mContext;
 }

@@ -12,10 +12,10 @@ class Character;
 
 struct CharacterData
 {
-	Textures::ID					texture;
-	sf::IntRect						textureRect;
+    Textures::ID                    texture;
+    sf::IntRect                     textureRect;
 };
 
-std::vector<CharacterData>	initializeCharacterData();
+std::vector<CharacterData>          initializeCharacterData();
 
 #endif // GAME_DATATABLES_HPP

@@ -12,39 +12,39 @@ class CommandQueue;
 
 class Player
 {
-	public:
-		enum Action
-		{
-			MoveLeft,
-			MoveRight,
-			MoveUp,
-			MoveDown,
-			
-			FaceNorth,
-			FaceEast,
-			FaceSouth,
-			FaceWest,
+    public:
+        enum Action
+        {
+            MoveLeft,
+            MoveRight,
+            MoveUp,
+            MoveDown,
+            
+            FaceNorth,
+            FaceEast,
+            FaceSouth,
+            FaceWest,
 
-			ActionCount
-		};
+            ActionCount
+        };
 
-	public:
-								Player();
+    public:
+                                Player();
 
-		void					handleEvent(const sf::Event& event, CommandQueue& commands);
-		void					handleRealtimeInput(CommandQueue& commands);
+        void                    handleEvent(const sf::Event& event, CommandQueue& commands);
+        void                    handleRealtimeInput(CommandQueue& commands);
 
-		void					assignKey(Action action, sf::Keyboard::Key key);
-		sf::Keyboard::Key		getAssignedKey(Action action) const;
+        void                    assignKey(Action action, sf::Keyboard::Key key);
+        sf::Keyboard::Key       getAssignedKey(Action action) const;
 
-	private:
-		void					initializeActions();
-		static bool				isRealtimeAction(Action action);
+    private:
+        void                    initializeActions();
+        static bool             isRealtimeAction(Action action);
 
 
-	private:
-		std::map<sf::Keyboard::Key, Action>		mKeyBinding;
-		std::map<Action, Command>				mActionBinding;
+    private:
+        std::map<sf::Keyboard::Key, Action>    mKeyBinding;
+        std::map<Action, Command>              mActionBinding;
 };
 
 #endif // GAME_PLAYER_HPP
