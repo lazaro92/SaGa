@@ -22,6 +22,8 @@ Character::Character(Type type, const TextureHolder& textures)
 , mType(type)
 , mSprite(textures.get(Table[type].texture), Table[type].textureRect)
 , mDirection(Direction::South)
+, mMovementSpriteChangeTime(sf::Time::Zero)
+, mIsRightSpriteMovement(false)
 {
 	centerOrigin(mSprite);
 }
@@ -33,6 +35,7 @@ void Character::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) c
 
 void Character::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
+    updateMovementSprite(dt);
 	Entity::updateCurrent(dt, commands);
 }
 
@@ -47,14 +50,33 @@ void Character::setDirection(Direction direction) {
     sf::IntRect textureRect = Table[mType].textureRect;
 
     if (Direction::North == direction)
-        textureRect.left += 96;
+        textureRect.left = 96;
     else if (Direction::East == direction)
-        textureRect.left += 32;
+        textureRect.left = 32;
     else if (Direction::South == direction)
-        textureRect.left += 0;
+        textureRect.left = 0;
     else
-        textureRect.left += 64;
+        textureRect.left = 64;
 
     mSprite.setTextureRect(textureRect);
+    mIsRightSpriteMovement = false;
+}
+
+void Character::updateMovementSprite(sf::Time dt)
+{
+    mMovementSpriteChangeTime += dt;
+
+    if (mMovementSpriteChangeTime >= sf::seconds(.8f))
+    {
+        sf::IntRect textureRect = mSprite.getTextureRect();
+
+        if (mIsRightSpriteMovement)
+            textureRect.left -= 16;
+        else
+            textureRect.left += 16;
+        mSprite.setTextureRect(textureRect);
+        mIsRightSpriteMovement = !mIsRightSpriteMovement;
+        mMovementSpriteChangeTime = sf::Time::Zero;
+    }
 }
 

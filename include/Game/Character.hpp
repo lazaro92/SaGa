@@ -6,6 +6,7 @@
 #include <Game/ResourceIdentifiers.hpp>
 
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/System/Time.hpp>
 
 
 class Character : public Entity
@@ -42,9 +43,14 @@ class Character : public Entity
 		virtual void 			updateCurrent(sf::Time dt, CommandQueue& commands);
 
 	private:
+		void                    updateMovementSprite(sf::Time dt);
+
+	private:
 		Type					mType;
 		Direction               mDirection;
 		sf::Sprite				mSprite;
+		sf::Time                mMovementSpriteChangeTime;
+		bool                    mIsRightSpriteMovement;
 };
 
 #endif // GAME_CHARACTER_HPP
