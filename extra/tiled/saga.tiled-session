@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "library.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -13,27 +13,31 @@
             "scaleInEditor": 1
         },
         "library.tmx": {
-            "scale": 1.1572,
+            "scale": 1.1804,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 96.78534393363287,
-                "y": 40.61527825786382
+                "x": 203.32090816672317,
+                "y": 177.0586241951881
             }
         }
     },
+    "last.exportedFilePath": "/home/albert/Downloads",
     "last.imagePath": "/home/albert/Github/SaGa/media/textures",
     "map.fixedSize": true,
     "map.height": 23,
+    "map.lastUsedExportFilter": "Lua files (*.lua)",
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "map.width": 19,
     "openFiles": [
+        "Library.tsx",
+        "library.tmx"
     ],
     "project": "saga.tiled-project",
     "recentFiles": [
-        "library.tmx",
-        "Library.tsx"
+        "Library.tsx",
+        "library.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

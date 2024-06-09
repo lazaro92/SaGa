@@ -1,4 +1,6 @@
 #include <Game/World.hpp>
+#include <Game/TilesetNode.hpp>
+
 #include <SFML/Graphics/RenderTarget.hpp>
 
 
@@ -43,6 +45,7 @@ CommandQueue& World::getCommandQueue()
 void World::loadTextures()
 {
     mTextures.load(Textures::Characters, "media/textures/characters.png");
+    mTextures.load(Textures::Library, "media/textures/library.png");
 } 
 
 void World::buildScene()
@@ -50,19 +53,21 @@ void World::buildScene()
     // Initialize the different layers
     for (std::size_t i = 0; i < LayerCount; ++i)
     {
-        Category::Type category = (i == LowerAir) ? Category::SceneAirLayer : Category::None;
-
-        SceneNode::Ptr layer(new SceneNode(category));
+        SceneNode::Ptr layer(new SceneNode(Category::None));
         mSceneLayers[i] = layer.get();
 
         mSceneGraph.attachChild(std::move(layer));
     }
 
+    // Add tilemap's node category
+    std::unique_ptr<TilesetNode> tilesetNode(new TilesetNode(TilesetNode::Library, mTextures));
+    TilesetNode* tileSet = tilesetNode.get();
+    tileSet->load();
+    mSceneLayers[Background]->attachChild(std::move(tilesetNode));
+
     // Add player's character
     std::unique_ptr<Character> player(new Character(Character::MutantMale, mTextures));
     mPlayerCharacter = player.get();
     mPlayerCharacter->setPosition(mSpawnPosition);
-    mSceneLayers[UpperAir]->attachChild(std::move(player));
-
-
+    mSceneLayers[Entities]->attachChild(std::move(player));
 }

@@ -22,6 +22,7 @@ add_executable(SaGa_exe
   src/SpriteNode.cpp
   src/State.cpp
   src/StateStack.cpp
+  src/TilesetNode.cpp
   src/Utility.cpp
   src/World.cpp
 )

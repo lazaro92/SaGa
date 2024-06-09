@@ -1,5 +1,6 @@
 #include <Game/DataTables.hpp>
 #include <Game/Character.hpp>
+#include <Game/TilesetNode.hpp>
 
 
 std::vector<CharacterData> initializeCharacterData()
@@ -23,12 +24,12 @@ std::vector<CharacterData> initializeCharacterData()
 
 std::vector<MapData> initializeMapData()
 {
-    std::vector<MapData> data(1);
+    std::vector<MapData> data(TilesetNode::MapCount);
 
-    data[Maps::Library].texture = Textures::Library;
-    data[Maps::Library].width = 19;
-    data[Maps::Library].height = 23;
-    data[Maps::Library].tiles = {
+    data[TilesetNode::Library].texture = Textures::Library;
+    data[TilesetNode::Library].width = 19;
+    data[TilesetNode::Library].height = 23;
+    data[TilesetNode::Library].tiles = {
         1, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 2, 53, 53,
         18, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 18, 53, 53,
         18, 31, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 18, 53, 53,

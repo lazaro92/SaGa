@@ -20,14 +20,6 @@ namespace Textures
     };
 }
 
-namespace Maps
-{
-    enum ID
-    {
-        Library,
-    };
-};
-
 namespace Shaders
 {
     enum ID
