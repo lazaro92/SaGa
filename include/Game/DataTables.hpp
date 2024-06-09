@@ -16,6 +16,15 @@ struct CharacterData
     sf::IntRect                     textureRect;
 };
 
+struct MapData
+{
+    Textures::ID                    texture;
+    int                             width;
+    int                             height;
+    std::vector<int>                tiles;
+};
+
 std::vector<CharacterData>          initializeCharacterData();
+std::vector<MapData>                initializeMapData();
 
 #endif // GAME_DATATABLES_HPP

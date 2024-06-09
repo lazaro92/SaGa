@@ -15,10 +15,18 @@ namespace Textures
 {
     enum ID
     {
-        Entities,
         Characters,
+        Library
     };
 }
+
+namespace Maps
+{
+    enum ID
+    {
+        Library,
+    };
+};
 
 namespace Shaders
 {
