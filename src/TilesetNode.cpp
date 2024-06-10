@@ -62,7 +62,16 @@ void TilesetNode::load()
         }
 }
 
-int TilesetNode::getTile(unsigned int x, unsigned int y)
+int TilesetNode::getTile(int tileX, int tileY)
 {
-    return Table[mMap].tiles[x + y * Table[mMap].width] -1;
+    return Table[mMap].tiles[tileX + tileY * Table[mMap].width] -1;
+}
+
+sf::Vector2i TilesetNode::pointToTile(float pointX, float pointY)
+{
+    int tileX = pointX / 16;
+    int tileY = pointY / 16;
+
+    return sf::Vector2i(tileX, tileY); 
+
 }

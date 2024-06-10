@@ -24,7 +24,8 @@ class TilesetNode : public SceneNode
 
     public:
         void                load();
-        int                 getTile(unsigned int x, unsigned int y);
+        int                 getTile(int tileX, int tileY);
+        sf::Vector2i        pointToTile(float pointX, float pointY);
 
     private:
         virtual void        drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;

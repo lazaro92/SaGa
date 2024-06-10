@@ -21,7 +21,6 @@ class GameState : public State
     private:
         World               mWorld; 
         Player&             mPlayer;
-
 };
 
 #endif // GAME_GAMESTATE_HPP
