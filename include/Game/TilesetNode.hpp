@@ -24,6 +24,7 @@ class TilesetNode : public SceneNode
 
     public:
         void                load();
+        int                 getTile(unsigned int x, unsigned int y);
 
     private:
         virtual void        drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -32,9 +33,6 @@ class TilesetNode : public SceneNode
         Map                  mMap;
         sf::Texture          mTileset;
         sf::VertexArray      mVertices;
-        unsigned int         mWidth;
-        unsigned int         mHeight;
-        std::vector<int>     mTiles;
 };
 
 #endif // GAME_TILESETNODE_HPP

@@ -11,9 +11,6 @@ namespace
 TilesetNode::TilesetNode(Map map, const TextureHolder& textures)
 : mMap(map)
 , mTileset(textures.get(Table[map].texture))
-, mWidth(Table[map].width)
-, mHeight(Table[map].height)
-, mTiles(Table[map].tiles)
 {
 }	
 
@@ -31,21 +28,25 @@ void TilesetNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states)
 
 void TilesetNode::load()
 {
-    mVertices.setPrimitiveType(sf::Quads);
-    mVertices.resize(mWidth * mHeight * 4);
+    unsigned int height = Table[mMap].height;
+    unsigned int width = Table[mMap].width;
+    std::vector<int> tiles = Table[mMap].tiles;
 
-    for (unsigned int i = 0; i < mWidth; ++i)
-        for (unsigned int j = 0; j < mHeight; ++j)
+    mVertices.setPrimitiveType(sf::Quads);
+    mVertices.resize(width * height * 4);
+
+    for (unsigned int i = 0; i < width; ++i)
+        for (unsigned int j = 0; j < height; ++j)
         {
             // get the current tile number
-            int tileNumber = mTiles[i + j * mWidth];
+            int tileNumber = tiles[i + j * width];
 
             // find its position in the tileset texture
             int tu = tileNumber % (mTileset.getSize().x / 16);
             int tv = tileNumber / (mTileset.getSize().x / 16);
 
             // get a pointer to the current tile's quad
-            sf::Vertex* quad = &mVertices[(i + j * mWidth) * 4];
+            sf::Vertex* quad = &mVertices[(i + j * width) * 4];
 
             // define its 4 corners
             quad[0].position = sf::Vector2f(i * 16, j * 16);
@@ -59,4 +60,9 @@ void TilesetNode::load()
             quad[2].texCoords = sf::Vector2f((tu + 1) * 16, (tv + 1) * 16);
             quad[3].texCoords = sf::Vector2f(tu * 16, (tv + 1) * 16);
         }
+}
+
+int TilesetNode::getTile(unsigned int x, unsigned int y)
+{
+    return Table[mMap].tiles[x + y * Table[mMap].width];
 }
