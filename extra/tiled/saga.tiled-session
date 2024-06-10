@@ -13,24 +13,25 @@
             "scaleInEditor": 1
         },
         "library.tmx": {
-            "scale": 1.1804,
+            "scale": 1.6639,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 202.4737377160285,
-                "y": 176.21145374449338
+                "x": 235.59108119478338,
+                "y": 244.00504838031134
             }
         }
     },
     "last.exportedFilePath": "/home/albert/Downloads",
     "last.imagePath": "/home/albert/Github/SaGa/media/textures",
     "map.fixedSize": true,
-    "map.height": 23,
+    "map.height": 31,
     "map.lastUsedExportFilter": "JavaScript map files (*.js)",
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
-    "map.width": 19,
+    "map.width": 30,
     "openFiles": [
+        "library.tmx",
         "library.tmx"
     ],
     "project": "saga.tiled-project",

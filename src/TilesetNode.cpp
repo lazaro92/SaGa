@@ -39,7 +39,7 @@ void TilesetNode::load()
         for (unsigned int j = 0; j < height; ++j)
         {
             // get the current tile number
-            int tileNumber = tiles[i + j * width];
+            int tileNumber = tiles[i + j * width] -1;
 
             // find its position in the tileset texture
             int tu = tileNumber % (mTileset.getSize().x / 16);
@@ -64,5 +64,5 @@ void TilesetNode::load()
 
 int TilesetNode::getTile(unsigned int x, unsigned int y)
 {
-    return Table[mMap].tiles[x + y * Table[mMap].width];
+    return Table[mMap].tiles[x + y * Table[mMap].width] -1;
 }
