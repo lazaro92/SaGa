@@ -12,6 +12,10 @@
             "scaleInDock": 3.454,
             "scaleInEditor": 1
         },
+        "collision.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "library.tmx": {
             "scale": 1.6639,
             "selectedLayer": 0,
@@ -22,7 +26,8 @@
         }
     },
     "last.exportedFilePath": "/home/albert/Downloads",
-    "last.imagePath": "/home/albert/Github/SaGa/media/textures",
+    "last.externalTilesetPath": "/home/albert/Github/SaGa/extra/tiled",
+    "last.imagePath": "/home/albert/Github/SaGa/extra/tiled",
     "map.fixedSize": true,
     "map.height": 31,
     "map.lastUsedExportFilter": "JavaScript map files (*.js)",
@@ -35,9 +40,11 @@
     ],
     "project": "saga.tiled-project",
     "recentFiles": [
+        "collision.tsx",
         "library.tmx",
         "Library.tsx"
     ],
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 16,
