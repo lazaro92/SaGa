@@ -171,3 +171,8 @@ sf::Vector2f unitVector(sf::Vector2f vector)
     assert(vector != sf::Vector2f(0.f, 0.f));
     return vector / length(vector);
 }
+
+float lerp(float origin, float destination, float dt)
+{
+    return origin + dt * (destination - origin);
+}

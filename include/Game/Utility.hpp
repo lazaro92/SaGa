@@ -34,4 +34,6 @@ int             randomInt(int exclusiveMax);
 float           length(sf::Vector2f vector);
 sf::Vector2f    unitVector(sf::Vector2f vector);
 
+float           lerp(float origin, float destination, float dt);
+
 #endif // GAME_UTILITY_HPP
