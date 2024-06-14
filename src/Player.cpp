@@ -10,17 +10,17 @@ using namespace std::placeholders;
 
 struct PlayerMover
 {
-    PlayerMover(float vx, float vy)
-    : velocity(vx, vy)
+    PlayerMover(Character::Direction direction)
+    : mDirection(direction)
     {
     }
 
     void operator() (Character& character, sf::Time) const
     {
-        character.accelerate(velocity * 200.f);
+        character.startMoving(mDirection);
     }
 
-    sf::Vector2f velocity;
+    Character::Direction mDirection;
 };
 
 
@@ -95,10 +95,10 @@ sf::Keyboard::Key Player::getAssignedKey(Action action) const
 
 void Player::initializeActions()
 {
-    mActionBinding[MoveLeft].action      = derivedAction<Character>(PlayerMover(-1,  0));
-    mActionBinding[MoveRight].action     = derivedAction<Character>(PlayerMover(+1,  0));
-    mActionBinding[MoveUp].action        = derivedAction<Character>(PlayerMover( 0, -1));
-    mActionBinding[MoveDown].action      = derivedAction<Character>(PlayerMover( 0, +1));
+    mActionBinding[MoveUp].action      = derivedAction<Character>(PlayerMover(Character::Direction::North));
+    mActionBinding[MoveRight].action     = derivedAction<Character>(PlayerMover(Character::Direction::East));
+    mActionBinding[MoveDown].action        = derivedAction<Character>(PlayerMover(Character::Direction::South));
+    mActionBinding[MoveLeft].action      = derivedAction<Character>(PlayerMover(Character::Direction::West));
 
     mActionBinding[FaceNorth].action     = derivedAction<Character>([] (Character& c, sf::Time) { c.setDirection(Character::Direction::North); });
     mActionBinding[FaceEast].action      = derivedAction<Character>([] (Character& c, sf::Time) { c.setDirection(Character::Direction::East); });

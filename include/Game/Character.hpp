@@ -37,6 +37,8 @@ class Character : public Entity
 
     public:
         void                    setDirection(Direction direction);
+        void                    startMoving(Direction direction);
+        void                    stopMoving();
 
     private:
         virtual void            drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -44,13 +46,17 @@ class Character : public Entity
 
     private:
         void                    updateMovementSprite(sf::Time dt);
+        void                    processDisplacement(sf::Time dt);
 
     private:
         Type                    mType;
         Direction               mDirection;
         sf::Sprite              mSprite;
+        sf::Vector2f            mOriginalPosition;
         sf::Time                mMovementSpriteChangeTime;
         bool                    mIsRightSpriteMovement;
+        bool                    mIsMoving;
+        float                   mMoveTime;
 };
 
 #endif // GAME_CHARACTER_HPP

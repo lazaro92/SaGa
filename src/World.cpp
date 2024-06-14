@@ -20,8 +20,6 @@ World::World(sf::RenderTarget& outputTarget)
 
 void World::update(sf::Time dt)
 {
-    mPlayerCharacter->setVelocity(0.f, 0.f);
-
     // Forward commands to scene graph, adapt velocity (scrolling, diagonal correction)
     while (!mCommandQueue.isEmpty())
         mSceneGraph.onCommand(mCommandQueue.pop(), dt);
