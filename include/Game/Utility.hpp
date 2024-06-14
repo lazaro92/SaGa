@@ -34,6 +34,9 @@ int             randomInt(int exclusiveMax);
 float           length(sf::Vector2f vector);
 sf::Vector2f    unitVector(sf::Vector2f vector);
 
-float           lerp(float origin, float destination, float dt);
+// Tile operations
+sf::Vector2i        pointToTile(float pointX, float pointY);
+sf::Vector2f        tileToPoint(int tileX, int tileY);
+float           lerp(float origin, float destination, float percentageDistance);
 
 #endif // GAME_UTILITY_HPP

@@ -16,8 +16,8 @@
             "scale": 1.6639,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 235.59108119478338,
-                "y": 244.00504838031134
+                "x": 234.99008353867424,
+                "y": -1.201995312218287
             }
         }
     },
@@ -31,7 +31,6 @@
     "map.tileWidth": 16,
     "map.width": 30,
     "openFiles": [
-        "library.tmx",
         "library.tmx"
     ],
     "project": "saga.tiled-project",

@@ -1,5 +1,6 @@
 #include <Game/World.hpp>
 #include <Game/TilesetNode.hpp>
+#include <Game/Utility.hpp>
 
 #include <SFML/Graphics/RenderTarget.hpp>
 
@@ -10,7 +11,7 @@ World::World(sf::RenderTarget& outputTarget)
 , mTextures() 
 , mSceneGraph()
 , mSceneLayers()
-, mSpawnPosition(20.0f, 20.0f)
+, mSpawnPosition(tileToPoint(7, 7))
 , mPlayerCharacter(nullptr)
 {
     loadTextures();
@@ -61,8 +62,6 @@ void World::buildScene()
 
     // Add tilemap's node category
     std::unique_ptr<TilesetNode> tilesetNode(new TilesetNode(TilesetNode::Library, mTextures));
-    TilesetNode* tileSet = tilesetNode.get();
-    tileSet->load();
     mSceneLayers[Background]->attachChild(std::move(tilesetNode));
 
     // Add player's character

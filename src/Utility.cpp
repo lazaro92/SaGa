@@ -172,7 +172,23 @@ sf::Vector2f unitVector(sf::Vector2f vector)
     return vector / length(vector);
 }
 
-float lerp(float origin, float destination, float dt)
+sf::Vector2i pointToTile(float pointX, float pointY)
 {
-    return origin + dt * (destination - origin);
+    int tileX = pointX / 16;
+    int tileY = pointY / 16;
+
+    return sf::Vector2i(tileX, tileY); 
+}
+
+sf::Vector2f tileToPoint(int tileX, int tileY)
+{
+    int ptX = 16 * tileX + (16 / 2);
+    int ptY = 16 * tileY + (16 / 2);
+
+    return sf::Vector2f(ptX, ptY);
+}
+
+float lerp(float origin, float destination, float percentageDistance)
+{
+    return origin + percentageDistance * (destination - origin);
 }

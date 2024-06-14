@@ -12,6 +12,7 @@ TilesetNode::TilesetNode(Map map, const TextureHolder& textures)
 : mMap(map)
 , mTileset(textures.get(Table[map].texture))
 {
+    load();
 }	
 
 void TilesetNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
@@ -65,13 +66,4 @@ void TilesetNode::load()
 int TilesetNode::getTile(int tileX, int tileY)
 {
     return Table[mMap].tiles[tileX + tileY * Table[mMap].width] -1;
-}
-
-sf::Vector2i TilesetNode::pointToTile(float pointX, float pointY)
-{
-    int tileX = pointX / 16;
-    int tileY = pointY / 16;
-
-    return sf::Vector2i(tileX, tileY); 
-
 }

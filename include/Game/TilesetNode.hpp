@@ -18,22 +18,21 @@ class TilesetNode : public SceneNode
             MapCount,
         };
 
-
     public:
         explicit            TilesetNode(Map map, const TextureHolder& textures);
 
     public:
-        void                load();
         int                 getTile(int tileX, int tileY);
-        sf::Vector2i        pointToTile(float pointX, float pointY);
 
     private:
         virtual void        drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
 
+        void                load();
+
     private:
-        Map                  mMap;
-        sf::Texture          mTileset;
-        sf::VertexArray      mVertices;
+        Map                 mMap;
+        sf::Texture         mTileset;
+        sf::VertexArray     mVertices;
 };
 
 #endif // GAME_TILESETNODE_HPP
