@@ -23,6 +23,8 @@ class TilesetNode : public SceneNode
 
     public:
         int                 getTile(int tileX, int tileY);
+        bool                isWalkable(int tileX, int tileY);
+
 
     private:
         virtual void        drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;

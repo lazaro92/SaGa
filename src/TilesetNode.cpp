@@ -67,3 +67,8 @@ int TilesetNode::getTile(int tileX, int tileY)
 {
     return Table[mMap].tiles[tileX + tileY * Table[mMap].width] -1;
 }
+
+bool TilesetNode::isWalkable(int tileX, int tileY)
+{
+    return Table[mMap].collisions[tileX + tileY * Table[mMap].width];
+}
