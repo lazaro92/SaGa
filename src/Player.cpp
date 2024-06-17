@@ -8,21 +8,6 @@
 
 using namespace std::placeholders;
 
-struct PlayerMover
-{
-    PlayerMover(Character::Direction direction)
-    : mDirection(direction)
-    {
-    }
-
-    void operator() (Character& character, sf::Time) const
-    {
-        character.requestMove(mDirection);
-    }
-
-    Character::Direction mDirection;
-};
-
 
 Player::Player()
 {
@@ -95,15 +80,15 @@ sf::Keyboard::Key Player::getAssignedKey(Action action) const
 
 void Player::initializeActions()
 {
-    mActionBinding[MoveUp].action      = derivedAction<Character>(PlayerMover(Character::Direction::North));
-    mActionBinding[MoveRight].action     = derivedAction<Character>(PlayerMover(Character::Direction::East));
-    mActionBinding[MoveDown].action        = derivedAction<Character>(PlayerMover(Character::Direction::South));
-    mActionBinding[MoveLeft].action      = derivedAction<Character>(PlayerMover(Character::Direction::West));
+    mActionBinding[MoveUp].action    = derivedAction<Character>([] (Character& c, sf::Time) { c.requestMove(Character::Direction::North); });
+    mActionBinding[MoveRight].action = derivedAction<Character>([] (Character& c, sf::Time) { c.requestMove(Character::Direction::East); });
+    mActionBinding[MoveDown].action  = derivedAction<Character>([] (Character& c, sf::Time) { c.requestMove(Character::Direction::South); });
+    mActionBinding[MoveLeft].action  = derivedAction<Character>([] (Character& c, sf::Time) { c.requestMove(Character::Direction::West); });
 
-    mActionBinding[FaceNorth].action     = derivedAction<Character>([] (Character& c, sf::Time) { c.setDirection(Character::Direction::North); });
-    mActionBinding[FaceEast].action      = derivedAction<Character>([] (Character& c, sf::Time) { c.setDirection(Character::Direction::East); });
-    mActionBinding[FaceSouth].action     = derivedAction<Character>([] (Character& c, sf::Time) { c.setDirection(Character::Direction::South); });
-    mActionBinding[FaceWest].action      = derivedAction<Character>([] (Character& c, sf::Time) { c.setDirection(Character::Direction::West); });
+    mActionBinding[FaceNorth].action = derivedAction<Character>([] (Character& c, sf::Time) { c.setDirection(Character::Direction::North); });
+    mActionBinding[FaceEast].action  = derivedAction<Character>([] (Character& c, sf::Time) { c.setDirection(Character::Direction::East); });
+    mActionBinding[FaceSouth].action = derivedAction<Character>([] (Character& c, sf::Time) { c.setDirection(Character::Direction::South); });
+    mActionBinding[FaceWest].action  = derivedAction<Character>([] (Character& c, sf::Time) { c.setDirection(Character::Direction::West); });
 
 }
 
