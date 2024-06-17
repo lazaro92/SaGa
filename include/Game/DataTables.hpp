@@ -22,6 +22,7 @@ struct MapData
     int                             width;
     int                             height;
     std::vector<int>                tiles;
+    std::vector<bool>               collisions;
 };
 
 std::vector<CharacterData>          initializeCharacterData();

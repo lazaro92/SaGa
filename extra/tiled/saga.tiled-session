@@ -18,10 +18,10 @@
         },
         "library.tmx": {
             "scale": 1.6639,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 234.99008353867424,
-                "y": -1.201995312218287
+                "x": 234.3890858825651,
+                "y": 245.20704369252965
             }
         }
     },
@@ -40,8 +40,8 @@
     ],
     "project": "saga.tiled-project",
     "recentFiles": [
-        "collision.tsx",
         "library.tmx",
+        "collision.tsx",
         "Library.tsx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
