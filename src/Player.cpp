@@ -17,7 +17,7 @@ struct PlayerMover
 
     void operator() (Character& character, sf::Time) const
     {
-        character.startMoving(mDirection);
+        character.requestMove(mDirection);
     }
 
     Character::Direction mDirection;

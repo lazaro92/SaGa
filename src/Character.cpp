@@ -25,9 +25,10 @@ Character::Character(Type type, const TextureHolder& textures)
 , mSprite(textures.get(Table[type].texture), Table[type].textureRect)
 , mDirection(Direction::South)
 , mOriginalPosition(0.f, 0.f)
+, mDestinationPosition(0.f, 0.f)
 , mMovementSpriteChangeTime(sf::Time::Zero)
 , mIsRightSpriteMovement(false)
-, mIsMoving(false)
+, mIsMoving(0)
 , mMoveTime(0.f)
 {
     centerOrigin(mSprite);
@@ -68,24 +69,63 @@ void Character::setDirection(Direction direction) {
     mIsRightSpriteMovement = false;
 }
 
-void Character::startMoving(Direction direction) {
-    if (mIsMoving) return;
+unsigned int Character::getDirection()
+{
+    return mDirection;
+}
 
-    mIsMoving = true;
+sf::Vector2f Character::getOriginalPosition()
+{
+    return mOriginalPosition;
+}
+
+sf::Vector2f Character::getDestinationPosition()
+{
+    return mDestinationPosition;
+}
+
+void Character::requestMove(Direction direction)
+{
+    if (mIsMoving != 0) return;
+    
+    mOriginalPosition = getPosition();
+    mDestinationPosition = getPosition();
     if (direction != mDirection)
         setDirection(direction);
-    mOriginalPosition = getPosition();
+
+    if (Direction::North == mDirection)
+        mDestinationPosition.y -= 16;
+    else if (Direction::East == mDirection)
+        mDestinationPosition.x += 16;
+    else if (Direction::South == mDirection)
+        mDestinationPosition.y += 16;
+    else
+        mDestinationPosition.x -= 16;
+
+    mIsMoving = 1;
+}
+
+bool Character::wantToMove()
+{
+    return mIsMoving == 1;
+}
+
+
+void Character::startMoving() {
+    if (mIsMoving == 2) return;
+    mIsMoving = 2;
 }
 
 void Character::stopMoving() {
-   mIsMoving = false;
+   mIsMoving = 0;
+   mDestinationPosition = mOriginalPosition;
 }
 
 
 void Character::updateMovementSprite(sf::Time dt)
 {
     mMovementSpriteChangeTime += dt;
-    float movementTime = mIsMoving ? .5f: .8f;
+    float movementTime = (mIsMoving == 2) ? .5f: .8f;
 
     if (mMovementSpriteChangeTime >= sf::seconds(movementTime))
     {
@@ -103,45 +143,44 @@ void Character::updateMovementSprite(sf::Time dt)
 
 void Character::processDisplacement(sf::Time dt)
 {
-    if (mIsMoving) {
-        mMoveTime += dt.asSeconds();
-        float lerpPercent = fmin(mMoveTime * 3.0f, 1.0f);
+    if (mIsMoving != 2) return;
 
-        sf::Vector2f destinationPosition = mOriginalPosition;
-        if (Direction::North == mDirection)
-            destinationPosition.y -= 16;
-        else if (Direction::East == mDirection)
-            destinationPosition.x += 16;
-        else if (Direction::South == mDirection)
-            destinationPosition.y += 16;
-        else
-            destinationPosition.x -= 16;
-        
-        sf::Vector2f nextPosition = getPosition();
-        if (Direction::East == mDirection || Direction::West == mDirection)
+    mMoveTime += dt.asSeconds();
+    float lerpPercent = fmin(mMoveTime * 3.0f, 1.0f);
+
+    sf::Vector2f destinationPosition = mOriginalPosition;
+    if (Direction::North == mDirection)
+        destinationPosition.y -= 16;
+    else if (Direction::East == mDirection)
+        destinationPosition.x += 16;
+    else if (Direction::South == mDirection)
+        destinationPosition.y += 16;
+    else
+        destinationPosition.x -= 16;
+    
+    sf::Vector2f nextPosition = getPosition();
+    if (Direction::East == mDirection || Direction::West == mDirection)
+    {
+        if (nextPosition.x == destinationPosition.x)
         {
-            if (nextPosition.x == destinationPosition.x)
-            {
-                mIsMoving = false;
-                mOriginalPosition.x = destinationPosition.x;
-                mMoveTime = 0.f;
-            }
-            else
-                nextPosition.x = lerp(mOriginalPosition.x, destinationPosition.x, lerpPercent);
+            mIsMoving = 0;
+            mOriginalPosition.x = destinationPosition.x;
+            mMoveTime = 0.f;
         }
         else
-        {
-            if (nextPosition.y == destinationPosition.y)
-            {
-                mIsMoving = false;
-                mOriginalPosition.y = destinationPosition.y;
-                mMoveTime = 0.f;
-            }
-            else
-                nextPosition.y = lerp(mOriginalPosition.y, destinationPosition.y, lerpPercent);
-        }
-        setPosition(nextPosition);
+            nextPosition.x = lerp(mOriginalPosition.x, destinationPosition.x, lerpPercent);
     }
-
+    else
+    {
+        if (nextPosition.y == destinationPosition.y)
+        {
+            mIsMoving = 0;
+            mOriginalPosition.y = destinationPosition.y;
+            mMoveTime = 0.f;
+        }
+        else
+            nextPosition.y = lerp(mOriginalPosition.y, destinationPosition.y, lerpPercent);
+    }
+    setPosition(nextPosition);
 }
 

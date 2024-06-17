@@ -37,8 +37,14 @@ class Character : public Entity
 
     public:
         void                    setDirection(Direction direction);
-        void                    startMoving(Direction direction);
+        unsigned int            getDirection();
+        sf::Vector2f            getOriginalPosition();
+        sf::Vector2f            getDestinationPosition();
+        
+        void                    requestMove(Direction direction);
+        void                    startMoving();
         void                    stopMoving();
+        bool                    wantToMove();
 
     private:
         virtual void            drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -53,9 +59,10 @@ class Character : public Entity
         Direction               mDirection;
         sf::Sprite              mSprite;
         sf::Vector2f            mOriginalPosition;
+        sf::Vector2f            mDestinationPosition;
         sf::Time                mMovementSpriteChangeTime;
         bool                    mIsRightSpriteMovement;
-        bool                    mIsMoving;
+        unsigned int            mIsMoving; // 0 not moving | 1 request move | 2 moving
         float                   mMoveTime;
 };
 

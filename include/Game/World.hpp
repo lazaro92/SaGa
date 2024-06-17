@@ -6,6 +6,7 @@
 #include <Game/SceneNode.hpp>
 #include <Game/SpriteNode.hpp>
 #include <Game/Character.hpp>
+#include <Game/TilesetNode.hpp>
 #include <Game/CommandQueue.hpp>
 #include <Game/Command.hpp>
 
@@ -26,6 +27,7 @@ class World : private sf::NonCopyable {
     private:
         void                                loadTextures();
         void                                buildScene();
+        void                                handleCollisions();
 
     private:
         enum Layer
@@ -47,6 +49,7 @@ class World : private sf::NonCopyable {
         CommandQueue                        mCommandQueue;
 
         Character*                          mPlayerCharacter;
+        TilesetNode*                        mTileset;
 };
 
 
