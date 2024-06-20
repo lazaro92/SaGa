@@ -12,7 +12,7 @@ World::World(sf::RenderTarget& outputTarget)
 , mTextures() 
 , mSceneGraph()
 , mSceneLayers()
-, mSpawnPosition(tileToPoint(7, 7))
+, mSpawnPosition(tileToPoint(22, 24))
 , mPlayerCharacter(nullptr)
 , mTileset(nullptr)
 {
@@ -72,6 +72,27 @@ void World::buildScene()
     mPlayerCharacter = player.get();
     mPlayerCharacter->setPosition(mSpawnPosition);
     mSceneLayers[Entities]->attachChild(std::move(player));
+
+    addCharacters();
+}
+
+void World::addCharacters() {
+
+    std::unique_ptr<Character> character1(new Character(Character::MutantMale, mTextures));
+    std::unique_ptr<Character> character2(new Character(Character::MutantMale, mTextures));
+    std::unique_ptr<Character> character3(new Character(Character::MutantMale, mTextures));
+    std::unique_ptr<Character> character4(new Character(Character::MutantMale, mTextures));
+
+    character1.get()->setPosition(tileToPoint(22, 16));
+    character2.get()->setPosition(tileToPoint(14, 13));
+    character3.get()->setPosition(tileToPoint(7, 7));
+    character4.get()->setPosition(tileToPoint(8, 20));
+
+    mSceneLayers[Entities]->attachChild(std::move(character1));
+    mSceneLayers[Entities]->attachChild(std::move(character2));
+    mSceneLayers[Entities]->attachChild(std::move(character3));
+    mSceneLayers[Entities]->attachChild(std::move(character4));
+
 }
 
 void World::handleCollisions()

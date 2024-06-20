@@ -27,6 +27,7 @@ class World : private sf::NonCopyable {
     private:
         void                                loadTextures();
         void                                buildScene();
+        void                                addCharacters();
         void                                handleCollisions();
 
     private:
