@@ -28,6 +28,7 @@ Character::Character(Type type, const TextureHolder& textures)
 , mDestinationPosition(0.f, 0.f)
 , mMovementSpriteChangeTime(sf::Time::Zero)
 , mIsRightSpriteMovement(false)
+, mIsControlledByPlayer(false)
 , mIsMoving(0)
 , mMoveTime(0.f)
 {
@@ -48,7 +49,7 @@ void Character::updateCurrent(sf::Time dt, CommandQueue& commands)
 
 unsigned int Character::getCategory() const
 {
-    return Category::PlayerCharacter;
+    return mIsControlledByPlayer ? Category::PlayerCharacter: Category::NPC;
 }
 
 void Character::setDirection(Direction direction) {
@@ -82,6 +83,11 @@ sf::Vector2f Character::getOriginalPosition()
 sf::Vector2f Character::getDestinationPosition()
 {
     return mDestinationPosition;
+}
+
+void Character::setIsControlledByPlayer(bool isControlledByPlayer)
+{
+    mIsControlledByPlayer = isControlledByPlayer;
 }
 
 void Character::requestMove(Direction direction)

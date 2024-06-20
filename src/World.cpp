@@ -68,9 +68,10 @@ void World::buildScene()
     mSceneLayers[Background]->attachChild(std::move(tilesetNode));
 
     // Add player's character
-    std::unique_ptr<Character> player(new Character(Character::MutantMale, mTextures));
+    std::unique_ptr<Character> player(new Character(Character::HumanMale, mTextures));
     mPlayerCharacter = player.get();
     mPlayerCharacter->setPosition(mSpawnPosition);
+    mPlayerCharacter->setIsControlledByPlayer(true);
     mSceneLayers[Entities]->attachChild(std::move(player));
 
     addCharacters();
@@ -78,10 +79,10 @@ void World::buildScene()
 
 void World::addCharacters() {
 
-    std::unique_ptr<Character> character1(new Character(Character::MutantMale, mTextures));
+    std::unique_ptr<Character> character1(new Character(Character::HumanFemale, mTextures));
     std::unique_ptr<Character> character2(new Character(Character::MutantMale, mTextures));
-    std::unique_ptr<Character> character3(new Character(Character::MutantMale, mTextures));
-    std::unique_ptr<Character> character4(new Character(Character::MutantMale, mTextures));
+    std::unique_ptr<Character> character3(new Character(Character::Soldier, mTextures));
+    std::unique_ptr<Character> character4(new Character(Character::YellowSlime, mTextures));
 
     character1.get()->setPosition(tileToPoint(22, 16));
     character2.get()->setPosition(tileToPoint(14, 13));
@@ -97,17 +98,24 @@ void World::addCharacters() {
 
 void World::handleCollisions()
 {
-    if (mPlayerCharacter->wantToMove())
+    Command command;
+    command.category = Category::PlayerCharacter | Category::NPC;
+    command.action = derivedAction<Character>([this] (Character& character, sf::Time)
     {
-        sf::Vector2f destinationPosition = mPlayerCharacter->getDestinationPosition();
-        sf::Vector2i destinationCell = pointToTile(destinationPosition.x, destinationPosition.y);
-        
-        if (mTileset->isWalkable(destinationCell.x, destinationCell.y))
+        if (character.wantToMove())
         {
-            mPlayerCharacter->startMoving();
+            sf::Vector2f destinationPosition = character.getDestinationPosition();
+            sf::Vector2i destinationCell = pointToTile(destinationPosition.x, destinationPosition.y);
+            
+            if (mTileset->isWalkable(destinationCell.x, destinationCell.y))
+            {
+                character.startMoving();
+            }
+            else {
+                character.stopMoving();
+            }
         }
-        else {
-            mPlayerCharacter->stopMoving();
-        }
-    }
+    });
+    
+    mCommandQueue.push(command);
 }

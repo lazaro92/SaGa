@@ -18,6 +18,9 @@ class Character : public Entity
             HumanFemale,
             MutantMale,
             MutantFemale,
+            Soldier,
+            GreenSlime,
+            YellowSlime,
             TypeCount,
         };
 
@@ -40,6 +43,7 @@ class Character : public Entity
         unsigned int            getDirection();
         sf::Vector2f            getOriginalPosition();
         sf::Vector2f            getDestinationPosition();
+        void                    setIsControlledByPlayer(bool isControlledByPlayer);
         
         void                    requestMove(Direction direction);
         void                    startMoving();
@@ -62,6 +66,7 @@ class Character : public Entity
         sf::Vector2f            mDestinationPosition;
         sf::Time                mMovementSpriteChangeTime;
         bool                    mIsRightSpriteMovement;
+        bool                    mIsControlledByPlayer;
         unsigned int            mIsMoving; // 0 not moving | 1 request move | 2 moving
         float                   mMoveTime;
 };

@@ -19,6 +19,15 @@ std::vector<CharacterData> initializeCharacterData()
     data[Character::MutantFemale].texture = Textures::Characters;
     data[Character::MutantFemale].textureRect = sf::IntRect(0, 48, 16, 16);
 
+    data[Character::Soldier].texture = Textures::Characters;
+    data[Character::Soldier].textureRect = sf::IntRect(0, 64, 16, 16);
+
+    data[Character::GreenSlime].texture = Textures::Characters;
+    data[Character::GreenSlime].textureRect = sf::IntRect(0, 80, 16, 16);
+
+    data[Character::YellowSlime].texture = Textures::Characters;
+    data[Character::YellowSlime].textureRect = sf::IntRect(0, 96, 16, 16);
+
     return data;
 }
 
