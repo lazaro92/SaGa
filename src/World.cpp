@@ -67,14 +67,14 @@ void World::buildScene()
     mTileset = tilesetNode.get();
     mSceneLayers[Background]->attachChild(std::move(tilesetNode));
 
+    addCharacters();
+
     // Add player's character
     std::unique_ptr<Character> player(new Character(Character::HumanMale, mTextures));
     mPlayerCharacter = player.get();
     mPlayerCharacter->setPosition(mSpawnPosition);
     mPlayerCharacter->setIsControlledByPlayer(true);
     mSceneLayers[Entities]->attachChild(std::move(player));
-
-    addCharacters();
 }
 
 void World::addCharacters() {
