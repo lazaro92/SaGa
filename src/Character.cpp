@@ -94,7 +94,9 @@ void Character::requestMove(Direction direction)
 {
     if (mIsMoving != 0) return;
     
+    mOriginalPosition = getPosition();
     mDestinationPosition = getPosition();
+
     if (direction != mDirection)
         setDirection(direction);
 
@@ -120,7 +122,6 @@ bool Character::isMoving()
     return mIsMoving == 2;
 }
 
-
 void Character::startMoving() {
     if (mIsMoving == 2) return;
     mIsMoving = 2;
@@ -131,11 +132,10 @@ void Character::stopMoving() {
    mDestinationPosition = mOriginalPosition;
 }
 
-
 void Character::updateMovementSprite(sf::Time dt)
 {
     mMovementSpriteChangeTime += dt;
-    float movementTime = (mIsMoving == 2) ? .5f: .8f;
+    float movementTime = (mIsMoving == 2) ? .4f: .8f;
 
     if (mMovementSpriteChangeTime >= sf::seconds(movementTime))
     {
@@ -156,7 +156,7 @@ void Character::processDisplacement(sf::Time dt)
     if (mIsMoving != 2) return;
 
     mMoveTime += dt.asSeconds();
-    float lerpPercent = fmin(mMoveTime * 3.0f, 1.0f);
+    float lerpPercent = fmin(mMoveTime * 3.f, 1.f);
 
     sf::Vector2f nextPosition = getPosition();
     if (Direction::East == mDirection || Direction::West == mDirection)
@@ -166,10 +166,10 @@ void Character::processDisplacement(sf::Time dt)
 
     setPosition(nextPosition);
 
-    if (lerpPercent == 1.0f)
+    if (lerpPercent == 1.f)
     {
         mIsMoving = 0;
-        mOriginalPosition.y = mDestinationPosition.y;
+        mOriginalPosition = mDestinationPosition;
         mMoveTime = 0.f;
     }
 
