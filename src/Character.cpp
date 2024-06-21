@@ -94,7 +94,6 @@ void Character::requestMove(Direction direction)
 {
     if (mIsMoving != 0) return;
     
-    mOriginalPosition = getPosition();
     mDestinationPosition = getPosition();
     if (direction != mDirection)
         setDirection(direction);
