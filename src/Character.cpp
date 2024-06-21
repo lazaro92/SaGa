@@ -159,39 +159,20 @@ void Character::processDisplacement(sf::Time dt)
     mMoveTime += dt.asSeconds();
     float lerpPercent = fmin(mMoveTime * 3.0f, 1.0f);
 
-    sf::Vector2f destinationPosition = mOriginalPosition;
-    if (Direction::North == mDirection)
-        destinationPosition.y -= 16;
-    else if (Direction::East == mDirection)
-        destinationPosition.x += 16;
-    else if (Direction::South == mDirection)
-        destinationPosition.y += 16;
-    else
-        destinationPosition.x -= 16;
-    
     sf::Vector2f nextPosition = getPosition();
     if (Direction::East == mDirection || Direction::West == mDirection)
-    {
-        if (nextPosition.x == destinationPosition.x)
-        {
-            mIsMoving = 0;
-            mOriginalPosition.x = destinationPosition.x;
-            mMoveTime = 0.f;
-        }
-        else
-            nextPosition.x = lerp(mOriginalPosition.x, destinationPosition.x, lerpPercent);
-    }
+        nextPosition.x = lerp(mOriginalPosition.x, mDestinationPosition.x, lerpPercent);
     else
-    {
-        if (nextPosition.y == destinationPosition.y)
-        {
-            mIsMoving = 0;
-            mOriginalPosition.y = destinationPosition.y;
-            mMoveTime = 0.f;
-        }
-        else
-            nextPosition.y = lerp(mOriginalPosition.y, destinationPosition.y, lerpPercent);
-    }
+        nextPosition.y = lerp(mOriginalPosition.y, mDestinationPosition.y, lerpPercent);
+
     setPosition(nextPosition);
+
+    if (lerpPercent == 1.0f)
+    {
+        mIsMoving = 0;
+        mOriginalPosition.y = mDestinationPosition.y;
+        mMoveTime = 0.f;
+    }
+
 }
 
