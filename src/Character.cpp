@@ -44,6 +44,12 @@ void Character::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
     processDisplacement(dt);
     updateMovementSprite(dt);
+
+    if (!mIsControlledByPlayer && !mIsMoving)
+    {
+        requestMove(static_cast<Direction>(randomInt(Direction::Size)));
+    }
+
     Entity::updateCurrent(dt, commands);
 }
 
