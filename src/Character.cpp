@@ -116,6 +116,11 @@ bool Character::wantToMove()
     return mIsMoving == 1;
 }
 
+bool Character::isMoving()
+{
+    return mIsMoving == 2;
+}
+
 
 void Character::startMoving() {
     if (mIsMoving == 2) return;

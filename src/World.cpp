@@ -18,10 +18,16 @@ World::World(sf::RenderTarget& outputTarget)
 {
     loadTextures();
     buildScene();
+
+    mWorldView.zoom(0.3f);
+    mWorldView.setCenter(mPlayerCharacter->getPosition());
 }
 
 void World::update(sf::Time dt)
 {
+    if (mPlayerCharacter->isMoving())
+        mWorldView.setCenter(mPlayerCharacter->getPosition());
+
     // Forward commands to scene graph, adapt velocity (scrolling, diagonal correction)
     while (!mCommandQueue.isEmpty())
         mSceneGraph.onCommand(mCommandQueue.pop(), dt);

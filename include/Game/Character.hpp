@@ -49,6 +49,7 @@ class Character : public Entity
         void                    startMoving();
         void                    stopMoving();
         bool                    wantToMove();
+        bool                    isMoving();
 
     private:
         virtual void            drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
