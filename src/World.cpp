@@ -17,7 +17,6 @@ World::World(sf::RenderTarget& outputTarget)
 , mTextures() 
 , mSceneGraph()
 , mSceneLayers()
-, mSpawnPosition(tileToPoint(22, 24))
 , mPlayerCharacter(nullptr)
 , mTileset(nullptr)
 {
@@ -81,9 +80,9 @@ void World::buildScene()
     addCharacters();
 
     // Add player's character
-    std::unique_ptr<Character> player(new Character(Character::HumanMale, mTextures));
+    std::unique_ptr<Character> player(new Character(Table[TilesetNode::Library].playerCharacter.type, mTextures));
     mPlayerCharacter = player.get();
-    mPlayerCharacter->setPosition(mSpawnPosition);
+    mPlayerCharacter->setPosition(tileToPoint(Table[TilesetNode::Library].playerCharacter.tilePosition.x, Table[TilesetNode::Library].playerCharacter.tilePosition.y));
     mPlayerCharacter->setIsControlledByPlayer(true);
     mSceneLayers[Entities]->attachChild(std::move(player));
 }

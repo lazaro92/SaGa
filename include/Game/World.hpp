@@ -43,8 +43,6 @@ class World : private sf::NonCopyable {
         sf::View                            mWorldView;
         TextureHolder                       mTextures;
 
-        sf::Vector2f                        mSpawnPosition;
-
         SceneNode                           mSceneGraph;
         std::array<SceneNode*, LayerCount>  mSceneLayers;
         CommandQueue                        mCommandQueue;

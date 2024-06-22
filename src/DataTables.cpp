@@ -105,11 +105,12 @@ std::vector<MapData> initializeMapData()
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
     };
     data[TilesetNode::Library].characters = {
-        { Character::Type::HumanFemale, Character::Direction::South, sf::Vector2i(22, 16)},
-        { Character::Type::MutantMale , Character::Direction::South, sf::Vector2i(14, 13)},
-        { Character::Type::Soldier    , Character::Direction::South, sf::Vector2i(7, 7)},
-        { Character::Type::YellowSlime, Character::Direction::South, sf::Vector2i(8, 20)},
+        { Character::Type::HumanFemale, Character::Direction::South, sf::Vector2i(22, 16) },
+        { Character::Type::MutantMale , Character::Direction::South, sf::Vector2i(14, 13) },
+        { Character::Type::Soldier    , Character::Direction::South, sf::Vector2i(7, 7)   },
+        { Character::Type::YellowSlime, Character::Direction::South, sf::Vector2i(8, 20)  },
     };
+    data[TilesetNode::Library].playerCharacter = { Character::Type::HumanMale, Character::Direction::West, sf::Vector2i(22, 24) };
 
     return data;
 }

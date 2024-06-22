@@ -32,6 +32,7 @@ struct MapData
     std::vector<int>                tiles;
     std::vector<bool>               collisions;
     std::vector<SceneCharacterData> characters;
+    SceneCharacterData              playerCharacter;
 };
 
 std::vector<CharacterData>          initializeCharacterData();
