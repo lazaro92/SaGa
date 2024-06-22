@@ -80,7 +80,7 @@ void World::buildScene()
     addCharacters();
 
     // Add player's character
-    std::unique_ptr<Character> player(new Character(Table[TilesetNode::Library].playerCharacter.type, mTextures));
+    std::unique_ptr<Character> player(new Character(Table[TilesetNode::Library].playerCharacter.type, Table[TilesetNode::Library].playerCharacter.direction, mTextures));
     mPlayerCharacter = player.get();
     mPlayerCharacter->setPosition(tileToPoint(Table[TilesetNode::Library].playerCharacter.tilePosition.x, Table[TilesetNode::Library].playerCharacter.tilePosition.y));
     mPlayerCharacter->setIsControlledByPlayer(true);
@@ -91,7 +91,7 @@ void World::addCharacters() {
 
     for(auto& sceneCharacterData : Table[TilesetNode::Library].characters)
     {
-        std::unique_ptr<Character> character(new Character(sceneCharacterData.type, mTextures));
+        std::unique_ptr<Character> character(new Character(sceneCharacterData.type, sceneCharacterData.direction, mTextures));
         character.get()->setPosition(tileToPoint(sceneCharacterData.tilePosition.x, sceneCharacterData.tilePosition.y));
         mSceneLayers[Entities]->attachChild(std::move(character));
     }
@@ -109,12 +109,9 @@ void World::handleCollisions()
             sf::Vector2i destinationCell = pointToTile(destinationPosition.x, destinationPosition.y);
             
             if (mTileset->isWalkable(destinationCell.x, destinationCell.y))
-            {
                 character.startMoving();
-            }
-            else {
+            else 
                 character.stopMoving();
-            }
         }
     });
     

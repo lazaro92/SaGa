@@ -110,7 +110,7 @@ std::vector<MapData> initializeMapData()
         { Character::Type::Soldier    , Character::Direction::South, sf::Vector2i(7, 7)   },
         { Character::Type::YellowSlime, Character::Direction::South, sf::Vector2i(8, 20)  },
     };
-    data[TilesetNode::Library].playerCharacter = { Character::Type::HumanMale, Character::Direction::West, sf::Vector2i(22, 24) };
+    data[TilesetNode::Library].playerCharacter = { Character::Type::HumanMale, Character::Direction::North, sf::Vector2i(22, 24) };
 
     return data;
 }

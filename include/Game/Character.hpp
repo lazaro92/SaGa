@@ -35,7 +35,7 @@ class Character : public Entity
 
 
     public:
-                                Character(Type type, const TextureHolder& textures);
+                                Character(Type type, Direction direction, const TextureHolder& textures);
 
         virtual unsigned int    getCategory() const;
 

@@ -19,11 +19,11 @@ namespace
 }
 
 
-Character::Character(Type type, const TextureHolder& textures)
+Character::Character(Type type, Direction direction, const TextureHolder& textures)
 : Entity()
 , mType(type)
 , mSprite(textures.get(Table[type].texture), Table[type].textureRect)
-, mDirection(Direction::South)
+, mDirection(direction)
 , mOriginalPosition(0.f, 0.f)
 , mDestinationPosition(0.f, 0.f)
 , mMovementSpriteChangeTime(sf::Time::Zero)
@@ -33,6 +33,7 @@ Character::Character(Type type, const TextureHolder& textures)
 , mMoveTime(0.f)
 {
     centerOrigin(mSprite);
+    setDirection(direction);
 }
 
 void Character::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
