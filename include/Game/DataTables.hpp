@@ -2,18 +2,26 @@
 #define GAME_DATATABLES_HPP
 
 #include <Game/ResourceIdentifiers.hpp>
+#include <Game/Character.hpp>
 
 #include <SFML/Graphics/Rect.hpp>
+#include <SFML/System/Vector2.hpp>
 
 #include <vector>
 
 
-class Character;
 
 struct CharacterData
 {
     Textures::ID                    texture;
     sf::IntRect                     textureRect;
+};
+
+struct SceneCharacterData
+{
+    Character::Type                 type;
+    Character::Direction            direction;
+    sf::Vector2i                    tilePosition;
 };
 
 struct MapData
@@ -23,6 +31,7 @@ struct MapData
     int                             height;
     std::vector<int>                tiles;
     std::vector<bool>               collisions;
+    std::vector<SceneCharacterData> characters;
 };
 
 std::vector<CharacterData>          initializeCharacterData();

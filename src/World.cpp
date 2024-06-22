@@ -1,10 +1,15 @@
 #include <Game/World.hpp>
 #include <Game/TilesetNode.hpp>
 #include <Game/Utility.hpp>
+#include <Game/DataTables.hpp>
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/System/Vector2.hpp>
 
+namespace
+{
+    const std::vector<MapData> Table = initializeMapData();
+}
 
 World::World(sf::RenderTarget& outputTarget)
 : mTarget(outputTarget)
@@ -85,21 +90,12 @@ void World::buildScene()
 
 void World::addCharacters() {
 
-    std::unique_ptr<Character> character1(new Character(Character::HumanFemale, mTextures));
-    std::unique_ptr<Character> character2(new Character(Character::MutantMale, mTextures));
-    std::unique_ptr<Character> character3(new Character(Character::Soldier, mTextures));
-    std::unique_ptr<Character> character4(new Character(Character::YellowSlime, mTextures));
-
-    character1.get()->setPosition(tileToPoint(22, 16));
-    character2.get()->setPosition(tileToPoint(14, 13));
-    character3.get()->setPosition(tileToPoint(7, 7));
-    character4.get()->setPosition(tileToPoint(8, 20));
-
-    mSceneLayers[Entities]->attachChild(std::move(character1));
-    mSceneLayers[Entities]->attachChild(std::move(character2));
-    mSceneLayers[Entities]->attachChild(std::move(character3));
-    mSceneLayers[Entities]->attachChild(std::move(character4));
-
+    for(auto& sceneCharacterData : Table[TilesetNode::Library].characters)
+    {
+        std::unique_ptr<Character> character(new Character(sceneCharacterData.type, mTextures));
+        character.get()->setPosition(tileToPoint(sceneCharacterData.tilePosition.x, sceneCharacterData.tilePosition.y));
+        mSceneLayers[Entities]->attachChild(std::move(character));
+    }
 }
 
 void World::handleCollisions()
