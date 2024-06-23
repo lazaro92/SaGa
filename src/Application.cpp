@@ -24,7 +24,7 @@ Application::Application()
 
     mFonts.load(Fonts::Main, "media/Sansation.ttf");
 
-    // load GUI textures
+    mTextures.load(Textures::Panel, "media/textures/panel.png");
 
     mStatisticsText.setFont(mFonts.get(Fonts::Main));
     mStatisticsText.setPosition(5.f, 5.f);

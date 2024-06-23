@@ -2,7 +2,7 @@
 #define GAME_SELECTMAPSTATE_HPP
 
 #include <Game/State.hpp>
-#include <Game/Player.hpp>
+#include <Game/GUI/Panel.hpp>
 
 
 class SelectMapState : public State
@@ -13,6 +13,11 @@ class SelectMapState : public State
         virtual void        draw();
         virtual bool        update(sf::Time dt);
         virtual bool        handleEvent(const sf::Event& event);
+
+    private:
+
+        GUI::Panel   		mGUIPanel;
+        
 };
 
 #endif // GAME_SELECTMAPSTATE_HPP

@@ -6,12 +6,17 @@
 
 SelectMapState::SelectMapState(StateStack& stack, Context context)
 : State(stack, context)
+, mGUIPanel(*context.textures, 300, 200)
 {
-    context.music->stop();
+    mGUIPanel.setPosition(100.f, 100.f);
 }
 
 void SelectMapState::draw()
 {
+	sf::RenderWindow& window = *getContext().window;
+	window.setView(window.getDefaultView());
+
+    window.draw(mGUIPanel);
 }
 
 bool SelectMapState::update(sf::Time dt)

@@ -26,6 +26,9 @@ add_executable(SaGa_exe
   src/TilesetNode.cpp
   src/Utility.cpp
   src/World.cpp
+
+  src/GUI/Component.cpp
+  src/GUI/Panel.cpp
 )
 
 target_include_directories(SaGa_exe
