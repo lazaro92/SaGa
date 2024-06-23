@@ -2,6 +2,7 @@
 #include <Game/State.hpp>
 #include <Game/StateIdentifiers.hpp>
 #include <Game/GameState.hpp>
+#include <Game/SelectMapState.hpp>
 
 
 const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
@@ -30,7 +31,7 @@ Application::Application()
     mStatisticsText.setCharacterSize(10u);
 
     registerStates();
-    mStateStack.pushState(States::Game);
+    mStateStack.pushState(States::SelectMap);
 
     mMusic.setVolume(25.f);
 }
@@ -105,5 +106,6 @@ void Application::updateStatistics(sf::Time dt)
 
 void Application::registerStates()
 {
+    mStateStack.registerState<SelectMapState>(States::SelectMap);
     mStateStack.registerState<GameState>(States::Game);
 }

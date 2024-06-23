@@ -18,6 +18,7 @@ add_executable(SaGa_exe
   src/MusicPlayer.cpp
   src/Player.cpp
   src/SceneNode.cpp
+  src/SelectMapState.cpp
   src/SoundPlayer.cpp
   src/SpriteNode.cpp
   src/State.cpp

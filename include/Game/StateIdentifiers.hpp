@@ -7,13 +7,8 @@ namespace States
     enum ID
     {
         None,
-        Title,
-        Menu,
+        SelectMap,
         Game,
-        Loading,
-        Pause,
-        Settings,
-        GameOver
     };
 }
 
