@@ -6,9 +6,9 @@
 
 SelectMapState::SelectMapState(StateStack& stack, Context context)
 : State(stack, context)
-, mGUIPanel(*context.textures, 300, 200)
+, mGUIPanelText(*context.textures, *context.fonts, 300, 200)
 {
-    mGUIPanel.setPosition(100.f, 100.f);
+    mGUIPanelText.setPosition(100.f, 100.f);
 }
 
 void SelectMapState::draw()
@@ -16,7 +16,7 @@ void SelectMapState::draw()
 	sf::RenderWindow& window = *getContext().window;
 	window.setView(window.getDefaultView());
 
-    window.draw(mGUIPanel);
+    window.draw(mGUIPanelText);
 }
 
 bool SelectMapState::update(sf::Time dt)

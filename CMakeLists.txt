@@ -29,6 +29,7 @@ add_executable(SaGa_exe
 
   src/GUI/Component.cpp
   src/GUI/Panel.cpp
+  src/GUI/PanelText.cpp
 )
 
 target_include_directories(SaGa_exe

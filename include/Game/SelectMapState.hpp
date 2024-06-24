@@ -2,7 +2,7 @@
 #define GAME_SELECTMAPSTATE_HPP
 
 #include <Game/State.hpp>
-#include <Game/GUI/Panel.hpp>
+#include <Game/GUI/PanelText.hpp>
 
 
 class SelectMapState : public State
@@ -16,7 +16,7 @@ class SelectMapState : public State
 
     private:
 
-        GUI::Panel   		mGUIPanel;
+        GUI::PanelText   		mGUIPanelText;
         
 };
 

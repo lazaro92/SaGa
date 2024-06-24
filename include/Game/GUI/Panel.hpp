@@ -9,9 +9,6 @@
 #include <SFML/Graphics/VertexArray.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
-#include <vector>
-#include <memory>
-
 
 namespace GUI
 {
@@ -27,10 +24,10 @@ class Panel: public Component
         virtual bool		isSelectable() const;
         virtual void		handleEvent(const sf::Event& event);
 
-
-    private:
+    protected:
         virtual void		draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
+    private:
         void                load();
 
     private:
@@ -43,4 +40,4 @@ class Panel: public Component
 
 }
 
-#endif // GAME_CONTAINER_HPP
+#endif // GAME_PANEL_HPP
