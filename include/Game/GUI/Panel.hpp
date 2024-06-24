@@ -26,16 +26,15 @@ class Panel: public Component
 
     protected:
         virtual void		draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
-    private:
         void                load();
+
+    protected:
+        unsigned int                    mWidth;
+        unsigned int                    mHeight;
 
     private:
         const sf::Texture		        mBackground;
         sf::VertexArray                 mVertices;
-        unsigned int                    mWidth;
-        unsigned int                    mHeight;
-
 };
 
 }

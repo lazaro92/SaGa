@@ -5,6 +5,8 @@
 
 #include <SFML/Graphics/Text.hpp>
 
+#include <string>
+
 
 namespace GUI
 {
@@ -19,6 +21,8 @@ class PanelText: public Panel
         
     private:
         virtual void		draw(sf::RenderTarget& target, sf::RenderStates states) const;
+        void                adaptTextToLimits(std::string& textToAdapt);
+
 
     private:
         sf::Text            mText;

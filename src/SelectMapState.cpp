@@ -6,7 +6,7 @@
 
 SelectMapState::SelectMapState(StateStack& stack, Context context)
 : State(stack, context)
-, mGUIPanelText(*context.textures, *context.fonts, 300, 200)
+, mGUIPanelText(*context.textures, *context.fonts, 600, 200)
 {
     mGUIPanelText.setPosition(100.f, 100.f);
 }
