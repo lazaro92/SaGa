@@ -37,6 +37,7 @@ namespace Fonts
     enum ID
     {
         Main,
+        Pixelart,
     };
 }
 

@@ -23,6 +23,7 @@ Application::Application()
     mWindow.setVerticalSyncEnabled(true);
 
     mFonts.load(Fonts::Main, "media/Sansation.ttf");
+    mFonts.load(Fonts::Pixelart, "media/pixelart.ttf");
 
     mTextures.load(Textures::Panel, "media/textures/panel.png");
 
