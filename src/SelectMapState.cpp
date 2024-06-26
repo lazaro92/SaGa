@@ -6,8 +6,9 @@
 
 SelectMapState::SelectMapState(StateStack& stack, Context context)
 : State(stack, context)
-, mGUIPanelText(*context.textures, *context.fonts, 600, 200)
+, mGUIPanelText(*context.textures, *context.fonts, 500, 76)
 {
+    mGUIPanelText.setText("Lorem Ipsum", true);
     mGUIPanelText.setPosition(100.f, 100.f);
 }
 

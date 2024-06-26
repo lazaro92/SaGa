@@ -18,6 +18,9 @@ class PanelText: public Panel
 
         virtual bool		isSelectable() const;
         virtual void		handleEvent(const sf::Event& event);
+
+    public:
+        void                setText(std::string text, bool setCentered);
         
     private:
         virtual void		draw(sf::RenderTarget& target, sf::RenderStates states) const;

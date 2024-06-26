@@ -1,4 +1,5 @@
 #include <Game/GUI/PanelText.hpp>
+#include <Game/Utility.hpp>
 
 #include <sstream>
 
@@ -7,21 +8,27 @@ namespace GUI
 
 PanelText::PanelText(const TextureHolder& textures, const FontHolder& fonts, unsigned int width, unsigned int height)
 : Panel(textures, width, height)
-, mText()
+, mText("", fonts.get(Fonts::Pixelart), 16)
 {
-    std::string text = "This is a test on long texts that are rendered on the panels. So imagine this is a character saying something interesting or a dialog that explains the history or anything else.";
-
-    adaptTextToLimits(text);
-
-    mText.setFont(fonts.get(Fonts::Pixelart));
-    mText.setString(text);
-    mText.setPosition(10.f, 10.f);
-    mText.setCharacterSize(16u);
 }
 
 bool PanelText::isSelectable() const
 {
     return false;
+}
+
+void PanelText::setText(std::string text, bool centered)
+{
+    adaptTextToLimits(text);
+    mText.setString(text);
+
+    if (centered)
+    {
+        centerOrigin(mText);
+        mText.setPosition(mWidth / 2.f, mHeight / 2.f);
+    }
+    else
+        mText.setPosition(10.f, 10.f);
 }
 
 void PanelText::handleEvent(const sf::Event& event)
@@ -46,17 +53,17 @@ void PanelText::adaptTextToLimits(std::string& textToAdapt)
     std::istringstream iss(textToAdapt);
     while (std::getline(iss, word, ' '))
     {
-        unsigned int wordWidth = word.size() * 15;
+        unsigned int wordWidth = word.size() * 12;
 
         if ((currentWidth + wordWidth) > mWidth)
         {
             newText += '\n' + word + ' ';
-            currentWidth = 0;
+            currentWidth = wordWidth + 10;
         }
         else
         {
             newText += word + ' ';
-            currentWidth += wordWidth + 15;
+            currentWidth += wordWidth + 10;
         }
         textToAdapt = newText;
     }
