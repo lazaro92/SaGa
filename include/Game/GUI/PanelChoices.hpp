@@ -5,7 +5,8 @@
 
 #include <SFML/Graphics/Text.hpp>
 
-#include <string>
+#include <vector>
+#include <memory>
 
 
 namespace GUI
@@ -13,17 +14,30 @@ namespace GUI
 
 class PanelChoices: public Panel
 {
-	public:
-							PanelChoices(const TextureHolder& textures, unsigned int width, unsigned int height);
+    public:
+        typedef std::shared_ptr<PanelChoices> Ptr;
 
-        virtual bool		isSelectable() const;
-        virtual void		handleEvent(const sf::Event& event);
+
+    public:
+                            PanelChoices(const TextureHolder& textures, unsigned int width, unsigned int height);
+
+        void                pack(Component::Ptr component);
+
+        virtual bool        isSelectable() const;
+        virtual void        handleEvent(const sf::Event& event);
 
     private:
-        virtual void		draw(sf::RenderTarget& target, sf::RenderStates states) const;
-        void                adaptTextToLimits(std::string& textToAdapt);
+        virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
+        bool                hasSelection() const;
+        void                select(std::size_t index);
+        void                selectNext();
+        void                selectPrevious();
 
+    private:
+        unsigned int        mColumns;
+        std::vector<Component::Ptr>     mChildren;
+        int                             mSelectedChild;
 };
 
 }

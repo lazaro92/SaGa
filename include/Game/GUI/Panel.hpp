@@ -9,6 +9,8 @@
 #include <SFML/Graphics/VertexArray.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
+#include <memory>
+
 
 namespace GUI
 {
@@ -18,14 +20,18 @@ namespace GUI
 */
 class Panel: public Component
 {
-	public:
-							Panel(const TextureHolder& textures, unsigned int width, unsigned int height);
+                            
+    public:
+                            typedef std::shared_ptr<Panel> Ptr;
 
-        virtual bool		isSelectable() const;
-        virtual void		handleEvent(const sf::Event& event);
+    public:
+                            Panel(const TextureHolder& textures, unsigned int width, unsigned int height);
+
+        virtual bool        isSelectable() const;
+        virtual void        handleEvent(const sf::Event& event);
 
     protected:
-        virtual void		draw(sf::RenderTarget& target, sf::RenderStates states) const;
+        virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const;
         void                load();
 
     protected:
