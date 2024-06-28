@@ -3,6 +3,7 @@
 
 #include <Game/State.hpp>
 #include <Game/GUI/PanelText.hpp>
+#include <Game/GUI/PanelChoices.hpp>
 
 
 class SelectMapState : public State
@@ -17,6 +18,7 @@ class SelectMapState : public State
     private:
 
         GUI::PanelText   		mGUIPanelText;
+        GUI::PanelChoices       mGUIPanelWorldChoices;
         
 };
 

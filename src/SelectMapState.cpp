@@ -6,10 +6,12 @@
 
 SelectMapState::SelectMapState(StateStack& stack, Context context)
 : State(stack, context)
-, mGUIPanelText(*context.textures, *context.fonts, 500, 76)
+, mGUIPanelText(*context.textures, *context.fonts, 600, 76)
+, mGUIPanelWorldChoices(*context.textures, 600, 400)
 {
-    mGUIPanelText.setText("Lorem Ipsum", true);
-    mGUIPanelText.setPosition(100.f, 100.f);
+    mGUIPanelText.setText("Select a map", true);
+    mGUIPanelText.setPosition(100.f, 50.f);
+    mGUIPanelWorldChoices.setPosition(100.f, 150.f);
 }
 
 void SelectMapState::draw()
@@ -18,6 +20,7 @@ void SelectMapState::draw()
 	window.setView(window.getDefaultView());
 
     window.draw(mGUIPanelText);
+    window.draw(mGUIPanelWorldChoices);
 }
 
 bool SelectMapState::update(sf::Time dt)

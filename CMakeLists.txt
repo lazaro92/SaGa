@@ -28,7 +28,9 @@ add_executable(SaGa_exe
   src/World.cpp
 
   src/GUI/Component.cpp
+  src/GUI/Option.cpp
   src/GUI/Panel.cpp
+  src/GUI/PanelChoices.cpp
   src/GUI/PanelText.cpp
 )
 
