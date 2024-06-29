@@ -16,6 +16,7 @@ add_executable(SaGa_exe
   src/GameState.cpp
   src/main.cpp
   src/MusicPlayer.cpp
+  src/PauseState.cpp
   src/Player.cpp
   src/SceneNode.cpp
   src/SelectMapState.cpp

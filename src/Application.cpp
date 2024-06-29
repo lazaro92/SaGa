@@ -2,6 +2,7 @@
 #include <Game/State.hpp>
 #include <Game/StateIdentifiers.hpp>
 #include <Game/GameState.hpp>
+#include <Game/PauseState.hpp>
 #include <Game/SelectMapState.hpp>
 
 
@@ -109,4 +110,5 @@ void Application::registerStates()
 {
     mStateStack.registerState<SelectMapState>(States::SelectMap);
     mStateStack.registerState<GameState>(States::Game);
+    mStateStack.registerState<PauseState>(States::Pause);
 }

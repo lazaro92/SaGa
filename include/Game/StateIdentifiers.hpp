@@ -9,6 +9,7 @@ namespace States
         None,
         SelectMap,
         Game,
+        Pause,
     };
 }
 
