@@ -4,7 +4,7 @@
 #include <Game/GUI/Component.hpp>
 #include <Game/ResourceIdentifiers.hpp>
 #include <Game/ResourceHolder.hpp>
-
+#include <Game/State.hpp>
 
 #include <SFML/Graphics/Text.hpp>
 
@@ -24,7 +24,7 @@ class Option : public Component
 
 
     public:
-                            Option(const std::string& text, const FontHolder& fonts);
+                            Option(const std::string& text, State::Context context);
 
         void                setCallback(Callback callback);
         void                setText(const std::string& text);

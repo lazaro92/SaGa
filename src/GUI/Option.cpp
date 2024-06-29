@@ -9,10 +9,10 @@
 namespace GUI
 {
 
-Option::Option(const std::string& text, const FontHolder& fonts)
+Option::Option(const std::string& text, State::Context context)
 : mCallback()
 , mIsToggle(false)
-, mText(text, fonts.get(Fonts::Pixelart), 16)
+, mText(text, context.fonts->get(Fonts::Pixelart), 16)
 {
 }
 

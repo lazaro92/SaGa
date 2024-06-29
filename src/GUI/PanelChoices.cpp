@@ -3,23 +3,33 @@
 
 #include <SFML/Window/Event.hpp>
 
+#include <cmath>
+
 
 namespace GUI
 {
 
-PanelChoices::PanelChoices(const TextureHolder& textures, unsigned int width, unsigned int height)
+PanelChoices::PanelChoices(const TextureHolder& textures, unsigned int width, unsigned int height, unsigned int columns)
 : Panel(textures, width, height)
+, mColumns(columns)
 , mChildren()
 , mSelectedChild(-1)
 {
 }
 
-void PanelChoices::pack(Component::Ptr component)
+void PanelChoices::pack(Option::Ptr option)
 {
-    mChildren.push_back(component);
+    mChildren.push_back(option);
 
-    if (!hasSelection() && component->isSelectable())
+    if (!hasSelection() && option->isSelectable())
         select(mChildren.size() - 1);
+
+    float itemWidth = mWidth / mColumns;
+    float margin = 50;
+
+    float x = ((mChildren.size() - 1) % mColumns) * itemWidth + margin;
+    float y = 50 * ((mChildren.size() - 1) / mColumns) + margin;
+    option->setPosition(x, y);
 }
 
 
@@ -59,7 +69,7 @@ void PanelChoices::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
     states.transform *= getTransform();
 
-    for (const Component::Ptr& child : mChildren)
+    for (const Option::Ptr& child : mChildren)
         target.draw(*child, states);
 }
 

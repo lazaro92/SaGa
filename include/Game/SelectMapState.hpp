@@ -18,7 +18,7 @@ class SelectMapState : public State
     private:
 
         GUI::PanelText   		mGUIPanelText;
-        GUI::PanelChoices       mGUIPanelWorldChoices;
+        GUI::PanelChoices       mGUIPanelChoicesMap;
         
 };
 

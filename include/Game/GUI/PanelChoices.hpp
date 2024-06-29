@@ -2,6 +2,7 @@
 #define GAME_PANELCHOICES_HPP
 
 #include <Game/GUI/Panel.hpp>
+#include <Game/GUI/Option.hpp>
 
 #include <SFML/Graphics/Text.hpp>
 
@@ -19,9 +20,9 @@ class PanelChoices: public Panel
 
 
     public:
-                            PanelChoices(const TextureHolder& textures, unsigned int width, unsigned int height);
+                            PanelChoices(const TextureHolder& textures, unsigned int width, unsigned int height, unsigned int columns);
 
-        void                pack(Component::Ptr component);
+        void                pack(Option::Ptr option);
 
         virtual bool        isSelectable() const;
         virtual void        handleEvent(const sf::Event& event);
@@ -35,9 +36,9 @@ class PanelChoices: public Panel
         void                selectPrevious();
 
     private:
-        unsigned int        mColumns;
-        std::vector<Component::Ptr>     mChildren;
-        int                             mSelectedChild;
+        unsigned int                 mColumns;
+        std::vector<Option::Ptr>     mChildren;
+        int                          mSelectedChild;
 };
 
 }
