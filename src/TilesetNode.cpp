@@ -1,6 +1,7 @@
 #include <Game/TilesetNode.hpp>
 #include <Game/DataTables.hpp>
 #include <Game/ResourceHolder.hpp>
+#include <Game/Constants.hpp>
 
 
 namespace
@@ -43,23 +44,23 @@ void TilesetNode::load()
             int tileNumber = tiles[i + j * width] -1;
 
             // find its position in the tileset texture
-            int tu = tileNumber % (mTileset.getSize().x / 16);
-            int tv = tileNumber / (mTileset.getSize().x / 16);
+            int tu = tileNumber % (mTileset.getSize().x / constants::TILE_MAP_SIZE);
+            int tv = tileNumber / (mTileset.getSize().x / constants::TILE_MAP_SIZE);
 
             // get a pointer to the current tile's quad
             sf::Vertex* quad = &mVertices[(i + j * width) * 4];
 
             // define its 4 corners
-            quad[0].position = sf::Vector2f(i * 16, j * 16);
-            quad[1].position = sf::Vector2f((i + 1) * 16, j * 16);
-            quad[2].position = sf::Vector2f((i + 1) * 16, (j + 1) * 16);
-            quad[3].position = sf::Vector2f(i * 16, (j + 1) * 16);
+            quad[0].position = sf::Vector2f(i * constants::TILE_MAP_SIZE, j * constants::TILE_MAP_SIZE);
+            quad[1].position = sf::Vector2f((i + 1) * constants::TILE_MAP_SIZE, j * constants::TILE_MAP_SIZE);
+            quad[2].position = sf::Vector2f((i + 1) * constants::TILE_MAP_SIZE, (j + 1) * constants::TILE_MAP_SIZE);
+            quad[3].position = sf::Vector2f(i * constants::TILE_MAP_SIZE, (j + 1) * constants::TILE_MAP_SIZE);
 
             // define its 4 texture coordinates
-            quad[0].texCoords = sf::Vector2f(tu * 16, tv * 16);
-            quad[1].texCoords = sf::Vector2f((tu + 1) * 16, tv * 16);
-            quad[2].texCoords = sf::Vector2f((tu + 1) * 16, (tv + 1) * 16);
-            quad[3].texCoords = sf::Vector2f(tu * 16, (tv + 1) * 16);
+            quad[0].texCoords = sf::Vector2f(tu * constants::TILE_MAP_SIZE, tv * constants::TILE_MAP_SIZE);
+            quad[1].texCoords = sf::Vector2f((tu + 1) * constants::TILE_MAP_SIZE, tv * constants::TILE_MAP_SIZE);
+            quad[2].texCoords = sf::Vector2f((tu + 1) * constants::TILE_MAP_SIZE, (tv + 1) * constants::TILE_MAP_SIZE);
+            quad[3].texCoords = sf::Vector2f(tu * constants::TILE_MAP_SIZE, (tv + 1) * constants::TILE_MAP_SIZE);
         }
 }
 

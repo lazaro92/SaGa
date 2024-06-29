@@ -1,5 +1,6 @@
 #include <Game/GUI/Option.hpp>
 #include <Game/Utility.hpp>
+#include <Game/Constants.hpp>
 
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
@@ -12,7 +13,7 @@ namespace GUI
 Option::Option(const std::string& text, State::Context context)
 : mCallback()
 , mIsToggle(false)
-, mText(text, context.fonts->get(Fonts::Pixelart), 16)
+, mText(text, context.fonts->get(Fonts::Pixelart), constants::PANEL_FONT_SIZE)
 {
 }
 

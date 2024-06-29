@@ -1,4 +1,5 @@
 #include <Game/Utility.hpp>
+#include <Game/Constants.hpp>
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -153,16 +154,16 @@ int randomInt(int exclusiveMax)
 
 sf::Vector2i pointToTile(float pointX, float pointY)
 {
-    int tileX = pointX / 16;
-    int tileY = pointY / 16;
+    int tileX = pointX / constants::TILE_MAP_SIZE;
+    int tileY = pointY / constants::TILE_MAP_SIZE;
 
     return sf::Vector2i(tileX, tileY); 
 }
 
 sf::Vector2f tileToPoint(int tileX, int tileY)
 {
-    int ptX = 16 * tileX + (16 / 2);
-    int ptY = 16 * tileY + (16 / 2);
+    int ptX = constants::TILE_MAP_SIZE * tileX + (constants::TILE_MAP_SIZE / 2);
+    int ptY = constants::TILE_MAP_SIZE * tileY + (constants::TILE_MAP_SIZE / 2);
 
     return sf::Vector2f(ptX, ptY);
 }

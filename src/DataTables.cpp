@@ -1,4 +1,5 @@
 #include <Game/DataTables.hpp>
+#include <Game/Constants.hpp>
 #include <Game/Character.hpp>
 #include <Game/TilesetNode.hpp>
 
@@ -8,25 +9,25 @@ std::vector<CharacterData> initializeCharacterData()
     std::vector<CharacterData> data(Character::TypeCount);
 
     data[Character::HumanMale].texture = Textures::Characters;
-    data[Character::HumanMale].textureRect = sf::IntRect(0, 0, 16, 16);
+    data[Character::HumanMale].textureRect = sf::IntRect(0, 0, constants::TILE_MAP_SIZE, constants::TILE_MAP_SIZE);
 
     data[Character::HumanFemale].texture = Textures::Characters;
-    data[Character::HumanFemale].textureRect = sf::IntRect(0, 16, 16, 16);
+    data[Character::HumanFemale].textureRect = sf::IntRect(0, constants::TILE_MAP_SIZE, constants::TILE_MAP_SIZE, constants::TILE_MAP_SIZE);
 
     data[Character::MutantMale].texture = Textures::Characters;
-    data[Character::MutantMale].textureRect = sf::IntRect(0, 32, 16, 16);
+    data[Character::MutantMale].textureRect = sf::IntRect(0, 32, constants::TILE_MAP_SIZE, constants::TILE_MAP_SIZE);
 
     data[Character::MutantFemale].texture = Textures::Characters;
-    data[Character::MutantFemale].textureRect = sf::IntRect(0, 48, 16, 16);
+    data[Character::MutantFemale].textureRect = sf::IntRect(0, 48, constants::TILE_MAP_SIZE, constants::TILE_MAP_SIZE);
 
     data[Character::Soldier].texture = Textures::Characters;
-    data[Character::Soldier].textureRect = sf::IntRect(0, 64, 16, 16);
+    data[Character::Soldier].textureRect = sf::IntRect(0, 64, constants::TILE_MAP_SIZE, constants::TILE_MAP_SIZE);
 
     data[Character::GreenSlime].texture = Textures::Characters;
-    data[Character::GreenSlime].textureRect = sf::IntRect(0, 80, 16, 16);
+    data[Character::GreenSlime].textureRect = sf::IntRect(0, 80, constants::TILE_MAP_SIZE, constants::TILE_MAP_SIZE);
 
     data[Character::YellowSlime].texture = Textures::Characters;
-    data[Character::YellowSlime].textureRect = sf::IntRect(0, 96, 16, 16);
+    data[Character::YellowSlime].textureRect = sf::IntRect(0, 96, constants::TILE_MAP_SIZE, constants::TILE_MAP_SIZE);
 
     return data;
 }
@@ -105,7 +106,7 @@ std::vector<MapData> initializeMapData()
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
     };
     data[TilesetNode::Library].characters = {
-        { Character::Type::HumanFemale, Character::Direction::South, sf::Vector2i(22, 16) },
+        { Character::Type::HumanFemale, Character::Direction::South, sf::Vector2i(22, constants::TILE_MAP_SIZE) },
         { Character::Type::MutantMale , Character::Direction::South, sf::Vector2i(14, 13) },
         { Character::Type::Soldier    , Character::Direction::South, sf::Vector2i(7, 7)   },
         { Character::Type::YellowSlime, Character::Direction::South, sf::Vector2i(8, 20)  },

@@ -1,5 +1,6 @@
 #include <Game/GUI/PanelText.hpp>
 #include <Game/Utility.hpp>
+#include <Game/Constants.hpp>
 
 #include <sstream>
 
@@ -8,7 +9,7 @@ namespace GUI
 
 PanelText::PanelText(const TextureHolder& textures, const FontHolder& fonts, unsigned int width, unsigned int height)
 : Panel(textures, width, height)
-, mText("", fonts.get(Fonts::Pixelart), 16)
+, mText("", fonts.get(Fonts::Pixelart), constants::PANEL_FONT_SIZE)
 {
 }
 
@@ -28,7 +29,7 @@ void PanelText::setText(std::string text, bool centered)
         mText.setPosition(mWidth / 2.f, mHeight / 2.f);
     }
     else
-        mText.setPosition(10.f, 10.f);
+        mText.setPosition(constants::PANEL_PADDING, constants::PANEL_PADDING);
 }
 
 void PanelText::handleEvent(const sf::Event& event)

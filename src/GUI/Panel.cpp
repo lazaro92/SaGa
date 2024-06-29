@@ -1,4 +1,5 @@
 #include <Game/GUI/Panel.hpp>
+#include <Game/Constants.hpp>
 
 #include <SFML/Window/Event.hpp>
 
@@ -35,8 +36,8 @@ void Panel::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 void Panel::load()
 {
-    unsigned int tilesWidth = mWidth / 3;
-    unsigned int tilesHeight = mHeight / 3;
+    unsigned int tilesWidth = mWidth / constants::PANEL_TILE_SIZE;
+    unsigned int tilesHeight = mHeight / constants::PANEL_TILE_SIZE;
 
     mVertices.setPrimitiveType(sf::Quads);
     mVertices.resize(tilesWidth * tilesHeight * 4);
@@ -78,23 +79,23 @@ void Panel::load()
 
 
             // find its position in the tileset texture
-            int tu = tileNumber % (mBackground.getSize().x / 3);
-            int tv = tileNumber / (mBackground.getSize().x / 3);
+            int tu = tileNumber % (mBackground.getSize().x / constants::PANEL_TILE_SIZE);
+            int tv = tileNumber / (mBackground.getSize().x / constants::PANEL_TILE_SIZE);
 
             // get a pointer to the current tile's quad
             sf::Vertex* quad = &mVertices[(i + j * tilesWidth) * 4];
 
             // define its 4 corners
-            quad[0].position = sf::Vector2f(i * 3, j * 3);
-            quad[1].position = sf::Vector2f((i + 1) * 3, j * 3);
-            quad[2].position = sf::Vector2f((i + 1) * 3, (j + 1) * 3);
-            quad[3].position = sf::Vector2f(i * 3, (j + 1) * 3);
+            quad[0].position = sf::Vector2f(i * constants::PANEL_TILE_SIZE, j * constants::PANEL_TILE_SIZE);
+            quad[1].position = sf::Vector2f((i + 1) * constants::PANEL_TILE_SIZE, j * constants::PANEL_TILE_SIZE);
+            quad[2].position = sf::Vector2f((i + 1) * constants::PANEL_TILE_SIZE, (j + 1) * constants::PANEL_TILE_SIZE);
+            quad[constants::PANEL_TILE_SIZE].position = sf::Vector2f(i * constants::PANEL_TILE_SIZE, (j + 1) * constants::PANEL_TILE_SIZE);
 
             // define its 4 texture coordinates
-            quad[0].texCoords = sf::Vector2f(tu * 3, tv * 3);
-            quad[1].texCoords = sf::Vector2f((tu + 1) * 3, tv * 3);
-            quad[2].texCoords = sf::Vector2f((tu + 1) * 3, (tv + 1) * 3);
-            quad[3].texCoords = sf::Vector2f(tu * 3, (tv + 1) * 3);
+            quad[0].texCoords = sf::Vector2f(tu * constants::PANEL_TILE_SIZE, tv * constants::PANEL_TILE_SIZE);
+            quad[1].texCoords = sf::Vector2f((tu + 1) * constants::PANEL_TILE_SIZE, tv * constants::PANEL_TILE_SIZE);
+            quad[2].texCoords = sf::Vector2f((tu + 1) * constants::PANEL_TILE_SIZE, (tv + 1) * constants::PANEL_TILE_SIZE);
+            quad[constants::PANEL_TILE_SIZE].texCoords = sf::Vector2f(tu * constants::PANEL_TILE_SIZE, (tv + 1) * constants::PANEL_TILE_SIZE);
         }
 }
 

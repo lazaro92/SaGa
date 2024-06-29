@@ -3,6 +3,7 @@
 #include <Game/Utility.hpp>
 #include <Game/CommandQueue.hpp>
 #include <Game/ResourceHolder.hpp>
+#include <Game/Constants.hpp>
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
@@ -108,13 +109,13 @@ void Character::requestMove(Direction direction)
         setDirection(direction);
 
     if (Direction::North == mDirection)
-        mDestinationPosition.y -= 16;
+        mDestinationPosition.y -= constants::TILE_MAP_SIZE;
     else if (Direction::East == mDirection)
-        mDestinationPosition.x += 16;
+        mDestinationPosition.x += constants::TILE_MAP_SIZE;
     else if (Direction::South == mDirection)
-        mDestinationPosition.y += 16;
+        mDestinationPosition.y += constants::TILE_MAP_SIZE;
     else
-        mDestinationPosition.x -= 16;
+        mDestinationPosition.x -= constants::TILE_MAP_SIZE;
 
     mIsMoving = 1;
 }
@@ -149,9 +150,9 @@ void Character::updateMovementSprite(sf::Time dt)
         sf::IntRect textureRect = mSprite.getTextureRect();
 
         if (mIsRightSpriteMovement)
-            textureRect.left -= 16;
+            textureRect.left -= constants::TILE_MAP_SIZE;
         else
-            textureRect.left += 16;
+            textureRect.left += constants::TILE_MAP_SIZE;
         mSprite.setTextureRect(textureRect);
         mIsRightSpriteMovement = !mIsRightSpriteMovement;
         mMovementSpriteChangeTime = sf::Time::Zero;

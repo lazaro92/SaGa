@@ -1,5 +1,6 @@
 #include <Game/GUI/PanelChoices.hpp>
 #include <Game/Utility.hpp>
+#include <Game/Constants.hpp>
 
 #include <SFML/Window/Event.hpp>
 
@@ -25,10 +26,9 @@ void PanelChoices::pack(Option::Ptr option)
         select(mChildren.size() - 1);
 
     float itemWidth = mWidth / mColumns;
-    float margin = 50;
 
-    float x = ((mChildren.size() - 1) % mColumns) * itemWidth + margin;
-    float y = 50 * ((mChildren.size() - 1) / mColumns) + margin;
+    float x = ((mChildren.size() - 1) % mColumns) * itemWidth + constants::PANEL_PADDING;
+    float y = constants::PANEL_ITEM_DISTANCE * ((mChildren.size() - 1) / mColumns) + constants::PANEL_PADDING;
     option->setPosition(x, y);
 }
 
