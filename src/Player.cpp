@@ -78,6 +78,16 @@ sf::Keyboard::Key Player::getAssignedKey(Action action) const
     return sf::Keyboard::Unknown;
 }
 
+void Player::setCurrentMap(TilesetNode::Map currentMap)
+{
+    mCurrentMap = currentMap;
+}
+
+TilesetNode::Map Player::getCurrentMap()
+{
+    return mCurrentMap;
+}
+
 void Player::initializeActions()
 {
     mActionBinding[MoveUp].action    = derivedAction<Character>([] (Character& c, sf::Time) { c.requestMove(Character::Direction::North); });

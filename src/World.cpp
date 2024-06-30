@@ -11,7 +11,7 @@ namespace
     const std::vector<MapData> Table = initializeMapData();
 }
 
-World::World(sf::RenderTarget& outputTarget)
+World::World(sf::RenderTarget& outputTarget, TilesetNode::Map currentMap)
 : mTarget(outputTarget)
 , mWorldView(outputTarget.getDefaultView())
 , mTextures() 
@@ -21,7 +21,7 @@ World::World(sf::RenderTarget& outputTarget)
 , mTileset(nullptr)
 {
     loadTextures();
-    buildScene();
+    buildScene(currentMap);
 
     mWorldView.zoom(0.3f);
     mWorldView.setCenter(mPlayerCharacter->getPosition());
@@ -61,7 +61,7 @@ void World::loadTextures()
     mTextures.load(Textures::Library, "media/textures/library.png");
 } 
 
-void World::buildScene()
+void World::buildScene(TilesetNode::Map currentMap)
 {
     // Initialize the different layers
     for (std::size_t i = 0; i < LayerCount; ++i)
@@ -73,23 +73,23 @@ void World::buildScene()
     }
 
     // Add tilemap's node category
-    std::unique_ptr<TilesetNode> tilesetNode(new TilesetNode(TilesetNode::Library, mTextures));
+    std::unique_ptr<TilesetNode> tilesetNode(new TilesetNode(currentMap, mTextures));
     mTileset = tilesetNode.get();
     mSceneLayers[Background]->attachChild(std::move(tilesetNode));
 
-    addCharacters();
+    addCharacters(currentMap);
 
     // Add player's character
-    std::unique_ptr<Character> player(new Character(Table[TilesetNode::Library].playerCharacter.type, Table[TilesetNode::Library].playerCharacter.direction, mTextures));
+    std::unique_ptr<Character> player(new Character(Table[currentMap].playerCharacter.type, Table[currentMap].playerCharacter.direction, mTextures));
     mPlayerCharacter = player.get();
-    mPlayerCharacter->setPosition(tileToPoint(Table[TilesetNode::Library].playerCharacter.tilePosition.x, Table[TilesetNode::Library].playerCharacter.tilePosition.y));
+    mPlayerCharacter->setPosition(tileToPoint(Table[currentMap].playerCharacter.tilePosition.x, Table[currentMap].playerCharacter.tilePosition.y));
     mPlayerCharacter->setIsControlledByPlayer(true);
     mSceneLayers[Entities]->attachChild(std::move(player));
 }
 
-void World::addCharacters() {
+void World::addCharacters(TilesetNode::Map currentMap) {
 
-    for(auto& sceneCharacterData : Table[TilesetNode::Library].characters)
+    for(auto& sceneCharacterData : Table[currentMap].characters)
     {
         std::unique_ptr<Character> character(new Character(sceneCharacterData.type, sceneCharacterData.direction, mTextures));
         character.get()->setPosition(tileToPoint(sceneCharacterData.tilePosition.x, sceneCharacterData.tilePosition.y));

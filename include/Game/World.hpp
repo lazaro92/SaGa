@@ -18,7 +18,7 @@
 
 class World : private sf::NonCopyable {
     public:
-                                            World(sf::RenderTarget& outputTarget);
+                                            World(sf::RenderTarget& outputTarget, TilesetNode::Map currentMap);
         void                                update(sf::Time dt);
         void                                draw();
         
@@ -26,8 +26,8 @@ class World : private sf::NonCopyable {
 
     private:
         void                                loadTextures();
-        void                                buildScene();
-        void                                addCharacters();
+        void                                buildScene(TilesetNode::Map currentMap);
+        void                                addCharacters(TilesetNode::Map currentMap);
         void                                handleCollisions();
 
     private:

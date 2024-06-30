@@ -36,10 +36,10 @@ std::vector<MapData> initializeMapData()
 {
     std::vector<MapData> data(TilesetNode::MapCount);
 
-    data[TilesetNode::Library].texture = Textures::Library;
-    data[TilesetNode::Library].width = 30;
-    data[TilesetNode::Library].height = 31;
-    data[TilesetNode::Library].tiles = {
+    data[TilesetNode::Library1F].texture = Textures::Library;
+    data[TilesetNode::Library1F].width = 30;
+    data[TilesetNode::Library1F].height = 31;
+    data[TilesetNode::Library1F].tiles = {
             53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53,
             53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53,
             53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53,
@@ -72,7 +72,7 @@ std::vector<MapData> initializeMapData()
             53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53,
             53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53
     };
-    data[TilesetNode::Library].collisions = {
+    data[TilesetNode::Library1F].collisions = {
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -105,20 +105,20 @@ std::vector<MapData> initializeMapData()
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
     };
-    data[TilesetNode::Library].characters = {
+    data[TilesetNode::Library1F].characters = {
         { Character::Type::HumanFemale, Character::Direction::South, sf::Vector2i(22, constants::TILE_MAP_SIZE) },
         { Character::Type::MutantMale , Character::Direction::South, sf::Vector2i(14, 13) },
         { Character::Type::Soldier    , Character::Direction::South, sf::Vector2i(7, 7)   },
         { Character::Type::YellowSlime, Character::Direction::South, sf::Vector2i(8, 20)  },
     };
-    data[TilesetNode::Library].playerCharacter = { Character::Type::HumanMale, Character::Direction::North, sf::Vector2i(22, 24) };
+    data[TilesetNode::Library1F].playerCharacter = { Character::Type::HumanMale, Character::Direction::North, sf::Vector2i(22, 24) };
 
     //-------------------------------------
 
-    data[TilesetNode::LibraryTop].texture = Textures::Library;
-    data[TilesetNode::LibraryTop].width = 19;
-    data[TilesetNode::LibraryTop].height = 21;
-    data[TilesetNode::LibraryTop].tiles = {
+    data[TilesetNode::Library2F].texture = Textures::Library;
+    data[TilesetNode::Library2F].width = 19;
+    data[TilesetNode::Library2F].height = 21;
+    data[TilesetNode::Library2F].tiles = {
             1,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,2,
             18,22,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,18,
             18,31,7,7,7,7,7,7,7,7,7,7,7,7,7,33,33,33,18,
@@ -142,7 +142,7 @@ std::vector<MapData> initializeMapData()
             28,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,0,0
 
     };
-    data[TilesetNode::LibraryTop].collisions = {
+    data[TilesetNode::Library2F].collisions = {
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
             1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -165,8 +165,8 @@ std::vector<MapData> initializeMapData()
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
     };
-    data[TilesetNode::LibraryTop].characters = {};
-    data[TilesetNode::LibraryTop].playerCharacter = { Character::Type::HumanMale, Character::Direction::North, sf::Vector2i(17, 7) };
+    data[TilesetNode::Library2F].characters = {};
+    data[TilesetNode::Library2F].playerCharacter = { Character::Type::HumanMale, Character::Direction::North, sf::Vector2i(17, 7) };
 
     return data;
 }

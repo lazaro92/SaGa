@@ -2,6 +2,7 @@
 #define GAME_PLAYER_HPP
 
 #include <Game/Command.hpp>
+#include <Game/TilesetNode.hpp>
 
 #include <SFML/Window/Event.hpp>
 
@@ -37,6 +38,9 @@ class Player
         void                    assignKey(Action action, sf::Keyboard::Key key);
         sf::Keyboard::Key       getAssignedKey(Action action) const;
 
+        void                    setCurrentMap(TilesetNode::Map currentMap);
+        TilesetNode::Map        getCurrentMap();
+
     private:
         void                    initializeActions();
         static bool             isRealtimeAction(Action action);
@@ -45,6 +49,8 @@ class Player
     private:
         std::map<sf::Keyboard::Key, Action>    mKeyBinding;
         std::map<Action, Command>              mActionBinding;
+
+        TilesetNode::Map                       mCurrentMap;
 };
 
 #endif // GAME_PLAYER_HPP

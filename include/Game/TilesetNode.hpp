@@ -14,8 +14,8 @@ class TilesetNode : public SceneNode
     public:
          enum Map
         {
-            Library,
-            LibraryTop,
+            Library1F,
+            Library2F,
             MapCount,
         };
 

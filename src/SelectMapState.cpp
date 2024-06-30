@@ -1,5 +1,6 @@
 #include <Game/SelectMapState.hpp>
 #include <Game/MusicPlayer.hpp>
+#include <Game/TilesetNode.hpp>
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
@@ -8,44 +9,31 @@ SelectMapState::SelectMapState(StateStack& stack, Context context)
 : State(stack, context)
 , mGUIPanelText(*context.textures, *context.fonts, 600, 76)
 , mGUIPanelChoicesMap(*context.textures, 600, 400, 3)
+, mPlayer(*context.player)
 {
     mGUIPanelText.setText("Select a map", true);
     mGUIPanelText.setPosition(100.f, 50.f);
 
     mGUIPanelChoicesMap.setPosition(100.f, 150.f);
 
-    auto libraryOption = std::make_shared<GUI::Option>("Library", context);
-	libraryOption->setCallback([this] ()
+    auto library1fOption = std::make_shared<GUI::Option>("Library 1F", context);
+	library1fOption->setCallback([this] ()
 	{
 		requestStackPop();
 		requestStackPush(States::Game);
+		mPlayer.setCurrentMap(TilesetNode::Library1F);
 	});
 
-    auto museumOption = std::make_shared<GUI::Option>("Museum", context);
-	museumOption->setCallback([this] ()
+    auto library2fOption = std::make_shared<GUI::Option>("Library 2F", context);
+	library2fOption->setCallback([this] ()
 	{
 		requestStackPop();
 		requestStackPush(States::Game);
+		mPlayer.setCurrentMap(TilesetNode::Library2F);
 	});
 
-    auto towerOption = std::make_shared<GUI::Option>("Tower", context);
-	towerOption->setCallback([this] ()
-	{
-		requestStackPop();
-		requestStackPush(States::Game);
-	});
-
-	auto townOption = std::make_shared<GUI::Option>("Town", context);
-	townOption->setCallback([this] ()
-	{
-		requestStackPop();
-		requestStackPush(States::Game);
-	});
-
-    mGUIPanelChoicesMap.pack(libraryOption);
-    mGUIPanelChoicesMap.pack(museumOption);
-    mGUIPanelChoicesMap.pack(towerOption);
-	mGUIPanelChoicesMap.pack(townOption);
+    mGUIPanelChoicesMap.pack(library1fOption);
+    mGUIPanelChoicesMap.pack(library2fOption);
 }
 
 void SelectMapState::draw()

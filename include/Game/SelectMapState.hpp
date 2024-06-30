@@ -2,6 +2,7 @@
 #define GAME_SELECTMAPSTATE_HPP
 
 #include <Game/State.hpp>
+#include <Game/Player.hpp>
 #include <Game/GUI/PanelText.hpp>
 #include <Game/GUI/PanelChoices.hpp>
 
@@ -19,6 +20,7 @@ class SelectMapState : public State
 
         GUI::PanelText   		mGUIPanelText;
         GUI::PanelChoices       mGUIPanelChoicesMap;
+        Player&                 mPlayer;
         
 };
 

@@ -6,7 +6,7 @@
 
 GameState::GameState(StateStack& stack, Context context)
 : State(stack, context)
-, mWorld(*context.window)
+, mWorld(*context.window, context.player->getCurrentMap())
 , mPlayer(*context.player)
 {
     context.music->play(Music::Dungeon);
