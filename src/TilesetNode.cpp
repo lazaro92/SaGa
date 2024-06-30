@@ -43,6 +43,8 @@ void TilesetNode::load()
             // get the current tile number
             int tileNumber = tiles[i + j * width] -1;
 
+            if (tileNumber < 0) continue;
+
             // find its position in the tileset texture
             int tu = tileNumber % (mTileset.getSize().x / constants::TILE_MAP_SIZE);
             int tv = tileNumber / (mTileset.getSize().x / constants::TILE_MAP_SIZE);
