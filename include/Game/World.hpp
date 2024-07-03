@@ -26,9 +26,10 @@ class World : private sf::NonCopyable {
 
     private:
         void                                loadTextures();
-        void                                buildScene(TilesetNode::Map currentMap);
-        void                                addCharacters(TilesetNode::Map currentMap);
+        void                                buildScene();
+        void                                addCharacters();
         void                                handleCollisions();
+        void                                handleCellAction();
 
     private:
         enum Layer
@@ -49,6 +50,7 @@ class World : private sf::NonCopyable {
 
         Character*                          mPlayerCharacter;
         TilesetNode*                        mTileset;
+        TilesetNode::Map                    mCurrentMap;
 };
 
 

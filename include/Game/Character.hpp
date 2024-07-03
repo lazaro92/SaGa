@@ -51,6 +51,7 @@ class Character : public Entity
         void                    stopMoving();
         bool                    wantToMove();
         bool                    isMoving();
+        bool                    hasFinishedMoving();
 
     private:
         virtual void            drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -69,7 +70,7 @@ class Character : public Entity
         sf::Time                mMovementSpriteChangeTime;
         bool                    mIsRightSpriteMovement;
         bool                    mIsControlledByPlayer;
-        unsigned int            mIsMoving; // 0 not moving | 1 request move | 2 moving
+        unsigned int            mIsMoving; // 0 not moving | 1 request move | 2 moving | 3 finish move
         float                   mMoveTime;
 };
 

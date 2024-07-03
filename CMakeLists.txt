@@ -4,6 +4,9 @@ project(SaGa
   VERSION 1.0
 )
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+include(TargetAddExtraWarnings)
+
 add_subdirectory(dependencies)
 
 add_executable(SaGa_exe
@@ -34,6 +37,13 @@ add_executable(SaGa_exe
   src/GUI/PanelChoices.cpp
   src/GUI/PanelText.cpp
 )
+
+set_target_properties(SaGa_exe PROPERTIES
+    CXX_STANDARD 20
+    CXX_EXTENSIONS OFF
+)
+
+target_add_extra_warnings(SaGa_exe)
 
 target_include_directories(SaGa_exe
   PRIVATE

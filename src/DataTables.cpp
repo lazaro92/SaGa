@@ -1,5 +1,6 @@
 #include <Game/DataTables.hpp>
 #include <Game/Constants.hpp>
+#include <Game/Utility.hpp>
 #include <Game/Character.hpp>
 #include <Game/TilesetNode.hpp>
 
@@ -112,6 +113,10 @@ std::vector<MapData> initializeMapData()
         { Character::Type::YellowSlime, Character::Direction::South, sf::Vector2i(8, 20)  },
     };
     data[TilesetNode::Library1F].playerCharacter = { Character::Type::HumanMale, Character::Direction::North, sf::Vector2i(22, 24) };
+    data[TilesetNode::Library1F].actionTiles[tileToIndex(23, 11, data[TilesetNode::Library1F].width)].action
+        = derivedAction<Character>([] (Character& c, sf::Time) { c.requestMove(Character::Direction::South); });
+    data[TilesetNode::Library1F].actionTiles[tileToIndex(23, 11, data[TilesetNode::Library1F].width)].category = Category::PlayerCharacter;
+
 
     //-------------------------------------
 

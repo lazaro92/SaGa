@@ -168,6 +168,16 @@ sf::Vector2f tileToPoint(int tileX, int tileY)
     return sf::Vector2f(ptX, ptY);
 }
 
+int tileToIndex(const sf::Vector2i& tile, int width)
+{
+    return tile.x + tile.y * width;
+}
+
+int tileToIndex(int x, int y, int width)
+{
+    return x + y * width;
+}
+
 float lerp(float origin, float destination, float percentageDistance)
 {
     return origin + percentageDistance * (destination - origin);

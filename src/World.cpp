@@ -6,6 +6,7 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/System/Vector2.hpp>
 
+
 namespace
 {
     const std::vector<MapData> Table = initializeMapData();
@@ -19,9 +20,10 @@ World::World(sf::RenderTarget& outputTarget, TilesetNode::Map currentMap)
 , mSceneLayers()
 , mPlayerCharacter(nullptr)
 , mTileset(nullptr)
+, mCurrentMap(currentMap)
 {
     loadTextures();
-    buildScene(currentMap);
+    buildScene();
 
     mWorldView.zoom(0.3f);
     mWorldView.setCenter(mPlayerCharacter->getPosition());
@@ -37,6 +39,7 @@ void World::update(sf::Time dt)
         mSceneGraph.onCommand(mCommandQueue.pop(), dt);
 
     handleCollisions();
+    handleCellAction();
 
     // Regular update step, adapt position (correct if outside view)
     mSceneGraph.update(dt, mCommandQueue);
@@ -61,7 +64,7 @@ void World::loadTextures()
     mTextures.load(Textures::Library, "media/textures/library.png");
 } 
 
-void World::buildScene(TilesetNode::Map currentMap)
+void World::buildScene()
 {
     // Initialize the different layers
     for (std::size_t i = 0; i < LayerCount; ++i)
@@ -73,23 +76,23 @@ void World::buildScene(TilesetNode::Map currentMap)
     }
 
     // Add tilemap's node category
-    std::unique_ptr<TilesetNode> tilesetNode(new TilesetNode(currentMap, mTextures));
+    std::unique_ptr<TilesetNode> tilesetNode(new TilesetNode(mCurrentMap, mTextures));
     mTileset = tilesetNode.get();
     mSceneLayers[Background]->attachChild(std::move(tilesetNode));
 
-    addCharacters(currentMap);
+    addCharacters();
 
     // Add player's character
-    std::unique_ptr<Character> player(new Character(Table[currentMap].playerCharacter.type, Table[currentMap].playerCharacter.direction, mTextures));
+    std::unique_ptr<Character> player(new Character(Table[mCurrentMap].playerCharacter.type, Table[mCurrentMap].playerCharacter.direction, mTextures));
     mPlayerCharacter = player.get();
-    mPlayerCharacter->setPosition(tileToPoint(Table[currentMap].playerCharacter.tilePosition.x, Table[currentMap].playerCharacter.tilePosition.y));
+    mPlayerCharacter->setPosition(tileToPoint(Table[mCurrentMap].playerCharacter.tilePosition.x, Table[mCurrentMap].playerCharacter.tilePosition.y));
     mPlayerCharacter->setIsControlledByPlayer(true);
     mSceneLayers[Entities]->attachChild(std::move(player));
 }
 
-void World::addCharacters(TilesetNode::Map currentMap) {
+void World::addCharacters() {
 
-    for(auto& sceneCharacterData : Table[currentMap].characters)
+    for(auto& sceneCharacterData : Table[mCurrentMap].characters)
     {
         std::unique_ptr<Character> character(new Character(sceneCharacterData.type, sceneCharacterData.direction, mTextures));
         character.get()->setPosition(tileToPoint(sceneCharacterData.tilePosition.x, sceneCharacterData.tilePosition.y));
@@ -116,4 +119,20 @@ void World::handleCollisions()
     });
     
     mCommandQueue.push(command);
+}
+
+void World::handleCellAction()
+{
+    if (mPlayerCharacter->hasFinishedMoving()) {
+        mPlayerCharacter->stopMoving();
+
+        sf::Vector2f destinationPosition = mPlayerCharacter->getDestinationPosition();
+        sf::Vector2i destinationCell = pointToTile(destinationPosition.x, destinationPosition.y);
+        int tileIndex = tileToIndex(destinationCell, Table[mCurrentMap].width);
+
+        if (Table[mCurrentMap].actionTiles.contains(tileIndex))
+        {
+            mCommandQueue.push(Table[mCurrentMap].actionTiles.at(tileIndex));
+        } 
+    }
 }

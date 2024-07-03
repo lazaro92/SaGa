@@ -3,10 +3,12 @@
 
 #include <Game/ResourceIdentifiers.hpp>
 #include <Game/Character.hpp>
+#include <Game/Command.hpp>
 
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/System/Vector2.hpp>
 
+#include <map>
 #include <vector>
 
 
@@ -26,13 +28,14 @@ struct SceneCharacterData
 
 struct MapData
 {
-    Textures::ID                    texture;
-    int                             width;
-    int                             height;
-    std::vector<int>                tiles;
-    std::vector<bool>               collisions;
-    std::vector<SceneCharacterData> characters;
-    SceneCharacterData              playerCharacter;
+    Textures::ID                               texture;
+    int                                        width;
+    int                                        height;
+    std::vector<int>                           tiles;
+    std::vector<bool>                          collisions;
+    std::vector<SceneCharacterData>            characters;
+    SceneCharacterData                         playerCharacter;
+    std::map<int, Command>  actionTiles;
 };
 
 std::vector<CharacterData>          initializeCharacterData();

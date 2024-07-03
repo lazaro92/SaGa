@@ -130,6 +130,12 @@ bool Character::isMoving()
     return mIsMoving == 2;
 }
 
+bool Character::hasFinishedMoving()
+{
+    return mIsMoving == 3;
+}
+
+
 void Character::startMoving() {
     if (mIsMoving == 2) return;
     mIsMoving = 2;
@@ -176,7 +182,7 @@ void Character::processDisplacement(sf::Time dt)
 
     if (lerpPercent == 1.f)
     {
-        mIsMoving = 0;
+        mIsMoving = mIsControlledByPlayer ? 3 : 0;
         mOriginalPosition = mDestinationPosition;
         mMoveTime = 0.f;
     }
