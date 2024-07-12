@@ -21,6 +21,8 @@ For the project, the resources of WonderSwan has been used (sprites and music). 
 
 The idea is only make the 1st world, because this is a lot of work, alos I d'on't have fait that I will do everything, so it's more how many stuff will be done before I get tired of this project.
 
+You can track my activity by checking the Issues tab.
+
 ## Project requirements
 
 - SFML version 2.6 installed via CMake (it will be downloaded with `cmake ..`, then compiled and linked as a library with `cmake --build .`)
