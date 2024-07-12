@@ -1,6 +1,6 @@
 # SaGa | Makai Toushi | Final Fantasy Legend
 
-A modern port of the SaGa game released by SquareSoft in the GameBoy and Wonderswan color consoles.
+A modern port of the SaGa game released by SquareSoft for the GameBoy and Wonderswan color consoles.
 
 ## About the game
 
