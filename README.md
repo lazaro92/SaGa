@@ -49,3 +49,7 @@ Controls:
 
 
 ## Screenshoots
+
+![Main menu](extra/screenshot/sh1.png)
+![Library](extra/screenshot/sh2.png)
+![Pause menu](extra/screenshot/sh3.png)
