@@ -34,6 +34,8 @@ class PanelChoices: public Panel
         void                select(std::size_t index);
         void                selectNext();
         void                selectPrevious();
+        void                selectNextLine();
+        void                selectPreviousLine();
 
     private:
         unsigned int                 mColumns;

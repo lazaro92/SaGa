@@ -49,9 +49,17 @@ void PanelChoices::handleEvent(const sf::Event& event)
     {
         if (event.key.code == sf::Keyboard::W || event.key.code == sf::Keyboard::Up)
         {
-            selectPrevious();
+            selectPreviousLine();
         }
         else if (event.key.code == sf::Keyboard::S || event.key.code == sf::Keyboard::Down)
+        {
+            selectNextLine();
+        }
+        else if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Left)
+        {
+            selectPrevious();
+        }
+        else if (event.key.code == sf::Keyboard::D || event.key.code == sf::Keyboard::Right)
         {
             selectNext();
         }
@@ -119,5 +127,27 @@ void PanelChoices::selectPrevious()
     // Select that component
     select(prev);
 }
+
+void PanelChoices::selectNextLine()
+{
+    if (!hasSelection())
+        return;
+
+    int next = (mColumns + mSelectedChild) % mChildren.size();
+
+    select(next);
+}
+
+void PanelChoices::selectPreviousLine()
+{
+    if (!hasSelection())
+        return;
+
+    int prev = abs(mSelectedChild - mColumns) % mChildren.size();
+
+    select(prev);
+}
+
+
 
 }
