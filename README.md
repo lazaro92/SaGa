@@ -1,4 +1,4 @@
-# SaGa | Makai Toushi | Final Fantasy Legend
+# SaGa I | Makai Toushi | Final Fantasy Legend I
 
 A modern port of the SaGa game released by SquareSoft for the GameBoy and Wonderswan color consoles.
 
