@@ -39,7 +39,7 @@ The steps for building the game are:
 2. Inside build folder create the build files cmake ..
 3. Build the project cmake --build . (it generates a src inside build folder)
 4. Copy the media folder from root directory to the generated media folder inside build cp ../media/ ./src/media/
-5. Execute the project with ./SaGa
+5. Execute the project with `./SaGa_exe`
 
 ## How to Play
 
