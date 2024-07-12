@@ -12,7 +12,7 @@ For the project, the resources of WonderSwan has been used (sprites and music). 
 
 - Linux.
 - SFML version 2.6 installed via CMake (it will be downloaded with `cmake ..`, then compiled and linked as a library with `cmake --build .`).
-- A C++ compiler (I have used g++).
+- A C++20 compiler.
 - CMake 3.28
 
 ## Build
