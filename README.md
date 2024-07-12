@@ -5,6 +5,7 @@ A modern port of the SaGa game released by SquareSoft for the GameBoy and Wonder
 ## Index
 
 - [About the game](#about-the-game)
+- [Scope of the project](#scope-of-the-project)
 - [Project requirements](#project-requirements)
 - [Build](#build)
 - [How to play](#how-to-play)
@@ -16,12 +17,17 @@ the first entry in the SaGa series, released in 1989 on the Game Boy. While it s
 
 For the project, the resources of WonderSwan has been used (sprites and music). [GIMP](https://www.gimp.org/) has been used to edit the tilesets and the maps has been created with [Tiled](https://www.mapeditor.org/) (you can find the files in **/extra/tiled** directory).
 
+## Scope of the project
+
+The idea is only make the 1st world, because this is a lot of work, alos I d'on't have fait that I will do everything, so it's more how many stuff will be done before I get tired of this project.
+
 ## Project requirements
 
-- Linux.
-- SFML version 2.6 installed via CMake (it will be downloaded with `cmake ..`, then compiled and linked as a library with `cmake --build .`).
-- A C++20 compiler.
+- SFML version 2.6 installed via CMake (it will be downloaded with `cmake ..`, then compiled and linked as a library with `cmake --build .`)
+- A C++20 compiler
 - CMake 3.28
+
+**Note:** it only has been tested and developed under Linux.
 
 ## Build
 
