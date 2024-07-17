@@ -149,7 +149,7 @@ void Character::stopMoving() {
 void Character::updateMovementSprite(sf::Time dt)
 {
     mMovementSpriteChangeTime += dt;
-    float movementTime = (mIsMoving == 2) ? .4f: .8f;
+    float movementTime = (mIsMoving == 2) ? .2f: .4f;
 
     if (mMovementSpriteChangeTime >= sf::seconds(movementTime))
     {
@@ -170,7 +170,7 @@ void Character::processDisplacement(sf::Time dt)
     if (mIsMoving != 2) return;
 
     mMoveTime += dt.asSeconds();
-    float lerpPercent = fmin(mMoveTime * 3.f, 1.f);
+    float lerpPercent = fmin(mMoveTime * 5.f, 1.f);
 
     sf::Vector2f nextPosition = getPosition();
     if (Direction::East == mDirection || Direction::West == mDirection)
