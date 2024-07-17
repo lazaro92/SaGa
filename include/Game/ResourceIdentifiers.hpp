@@ -59,6 +59,7 @@ namespace Music
 {
     enum ID
     {
+        None,
         Dungeon,
     };
 }

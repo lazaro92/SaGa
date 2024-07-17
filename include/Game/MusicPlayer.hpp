@@ -21,12 +21,14 @@ class MusicPlayer : private sf::NonCopyable
 
         void                        setPaused(bool paused);
         void                        setVolume(float volume);
+        bool                        isPlayingTheme(Music::ID theme);
 
 
     private:
         sf::Music                           mMusic;
         std::map<Music::ID, std::string>    mFilenames;
         float                               mVolume;
+        Music::ID                           mCurrentTheme;
 };
 
 #endif // GAME_MUSICPLAYER_HPP

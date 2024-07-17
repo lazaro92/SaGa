@@ -9,7 +9,8 @@ GameState::GameState(StateStack& stack, Context context)
 , mWorld(*context.window, context.player->getCurrentMap(), context.player->getCurrentSpawnPosition())
 , mPlayer(*context.player)
 {
-    context.music->play(Music::Dungeon);
+    if (!context.music->isPlayingTheme(Music::Dungeon))
+        context.music->play(Music::Dungeon);
 }
 
 void GameState::draw()

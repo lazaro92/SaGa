@@ -5,6 +5,7 @@ MusicPlayer::MusicPlayer()
 : mMusic()
 , mFilenames()
 , mVolume(100.f)
+,mCurrentTheme(Music::None)
 {
     mFilenames[Music::Dungeon] = "media/music/dungeon.ogg";
 }
@@ -19,6 +20,8 @@ void MusicPlayer::play(Music::ID theme)
     mMusic.setVolume(mVolume);
     mMusic.setLoop(true);
     mMusic.play();
+
+    mCurrentTheme = theme;
 }
 
 void MusicPlayer::stop()
@@ -37,4 +40,9 @@ void MusicPlayer::setPaused(bool paused)
         mMusic.pause();
     else
         mMusic.play();
+}
+
+bool MusicPlayer::isPlayingTheme(Music::ID theme)
+{
+    return mCurrentTheme == theme;
 }
