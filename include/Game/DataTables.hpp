@@ -3,7 +3,7 @@
 
 #include <Game/ResourceIdentifiers.hpp>
 #include <Game/Character.hpp>
-#include <Game/Command.hpp>
+#include <Game/TilesetNode.hpp>
 
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/System/Vector2.hpp>
@@ -26,6 +26,12 @@ struct SceneCharacterData
     sf::Vector2i                    tilePosition;
 };
 
+struct NextMapData
+{
+    TilesetNode::Map                mapId;
+    sf::Vector2i                    spawnPosition;
+};
+
 struct MapData
 {
     Textures::ID                               texture;
@@ -35,7 +41,7 @@ struct MapData
     std::vector<bool>                          collisions;
     std::vector<SceneCharacterData>            characters;
     SceneCharacterData                         playerCharacter;
-    std::map<int, Command>  actionTiles;
+    std::map<int, NextMapData>                 actionTiles; // TODO actionTiles should have a function
 };
 
 std::vector<CharacterData>          initializeCharacterData();

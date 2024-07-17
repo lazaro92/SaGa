@@ -88,6 +88,17 @@ TilesetNode::Map Player::getCurrentMap()
     return mCurrentMap;
 }
 
+void Player::setCurrentSpawnPosition(sf::Vector2i spawnPosition)
+{
+    mCurrentSpawnPosition = spawnPosition;
+}
+
+sf::Vector2i Player::getCurrentSpawnPosition()
+{
+    return mCurrentSpawnPosition;
+}
+
+
 void Player::initializeActions()
 {
     mActionBinding[MoveUp].action    = derivedAction<Character>([] (Character& c, sf::Time) { c.requestMove(Character::Direction::North); });

@@ -22,6 +22,7 @@ SelectMapState::SelectMapState(StateStack& stack, Context context)
 		requestStackPop();
 		requestStackPush(States::Game);
 		mPlayer.setCurrentMap(TilesetNode::Library1F);
+		mPlayer.setCurrentSpawnPosition(sf::Vector2i(22, 24));
 	});
 
     auto library2fOption = std::make_shared<GUI::Option>("Library 2F", context);
@@ -30,6 +31,7 @@ SelectMapState::SelectMapState(StateStack& stack, Context context)
 		requestStackPop();
 		requestStackPush(States::Game);
 		mPlayer.setCurrentMap(TilesetNode::Library2F);
+		mPlayer.setCurrentSpawnPosition(sf::Vector2i(17, 7));
 	});
 
     mGUIPanelChoicesMap.pack(library1fOption);

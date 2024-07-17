@@ -17,6 +17,7 @@ class TilesetNode : public SceneNode
             Library1F,
             Library2F,
             MapCount,
+            None,
         };
 
     public:

@@ -6,7 +6,7 @@
 
 GameState::GameState(StateStack& stack, Context context)
 : State(stack, context)
-, mWorld(*context.window, context.player->getCurrentMap())
+, mWorld(*context.window, context.player->getCurrentMap(), context.player->getCurrentSpawnPosition())
 , mPlayer(*context.player)
 {
     context.music->play(Music::Dungeon);
@@ -20,6 +20,14 @@ void GameState::draw()
 bool GameState::update(sf::Time dt)
 {
     mWorld.update(dt);
+
+    TilesetNode::Map nextMap = mWorld.getNextMap();
+    if (nextMap != TilesetNode::Map::None) {
+        requestStackPop();
+		requestStackPush(States::Game);
+        mPlayer.setCurrentMap(nextMap);
+        mPlayer.setCurrentSpawnPosition(mWorld.getNextSpawnPosition());
+    }
 
     CommandQueue& commands = mWorld.getCommandQueue();
     mPlayer.handleRealtimeInput(commands);

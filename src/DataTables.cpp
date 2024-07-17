@@ -2,7 +2,6 @@
 #include <Game/Constants.hpp>
 #include <Game/Utility.hpp>
 #include <Game/Character.hpp>
-#include <Game/TilesetNode.hpp>
 
 
 std::vector<CharacterData> initializeCharacterData()
@@ -112,10 +111,12 @@ std::vector<MapData> initializeMapData()
         { Character::Type::Soldier    , Character::Direction::South, sf::Vector2i(7, 7)   },
         { Character::Type::YellowSlime, Character::Direction::South, sf::Vector2i(8, 20)  },
     };
+   
+    int tileIndex = tileToIndex(23, 11, data[TilesetNode::Library1F].width);
+
     data[TilesetNode::Library1F].playerCharacter = { Character::Type::HumanMale, Character::Direction::North, sf::Vector2i(22, 24) };
-    data[TilesetNode::Library1F].actionTiles[tileToIndex(23, 11, data[TilesetNode::Library1F].width)].action
-        = derivedAction<Character>([] (Character& c, sf::Time) { c.requestMove(Character::Direction::South); });
-    data[TilesetNode::Library1F].actionTiles[tileToIndex(23, 11, data[TilesetNode::Library1F].width)].category = Category::PlayerCharacter;
+    data[TilesetNode::Library1F].actionTiles[tileIndex].mapId = TilesetNode::Library2F;
+    data[TilesetNode::Library1F].actionTiles[tileIndex].spawnPosition = sf::Vector2i(17, 7);
 
 
     //-------------------------------------
@@ -172,6 +173,12 @@ std::vector<MapData> initializeMapData()
     };
     data[TilesetNode::Library2F].characters = {};
     data[TilesetNode::Library2F].playerCharacter = { Character::Type::HumanMale, Character::Direction::North, sf::Vector2i(17, 7) };
+
+    int tileIndex2 = tileToIndex(17, 7, data[TilesetNode::Library2F].width);
+
+    data[TilesetNode::Library2F].actionTiles[tileIndex2].mapId = TilesetNode::Library1F;
+    data[TilesetNode::Library2F].actionTiles[tileIndex2].spawnPosition = sf::Vector2i(23, 11);
+
 
     return data;
 }

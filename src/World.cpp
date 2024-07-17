@@ -12,7 +12,7 @@ namespace
     const std::vector<MapData> Table = initializeMapData();
 }
 
-World::World(sf::RenderTarget& outputTarget, TilesetNode::Map currentMap)
+World::World(sf::RenderTarget& outputTarget, TilesetNode::Map currentMap, sf::Vector2i spawnPosition)
 : mTarget(outputTarget)
 , mWorldView(outputTarget.getDefaultView())
 , mTextures() 
@@ -21,9 +21,11 @@ World::World(sf::RenderTarget& outputTarget, TilesetNode::Map currentMap)
 , mPlayerCharacter(nullptr)
 , mTileset(nullptr)
 , mCurrentMap(currentMap)
+, mNextMap(TilesetNode::Map::None)
+, mNextSpawnPosition(sf::Vector2i(1,1))
 {
     loadTextures();
-    buildScene();
+    buildScene(spawnPosition);
 
     mWorldView.zoom(0.3f);
     mWorldView.setCenter(mPlayerCharacter->getPosition());
@@ -64,7 +66,7 @@ void World::loadTextures()
     mTextures.load(Textures::Library, "media/textures/library.png");
 } 
 
-void World::buildScene()
+void World::buildScene(sf::Vector2i spawnPosition)
 {
     // Initialize the different layers
     for (std::size_t i = 0; i < LayerCount; ++i)
@@ -85,7 +87,7 @@ void World::buildScene()
     // Add player's character
     std::unique_ptr<Character> player(new Character(Table[mCurrentMap].playerCharacter.type, Table[mCurrentMap].playerCharacter.direction, mTextures));
     mPlayerCharacter = player.get();
-    mPlayerCharacter->setPosition(tileToPoint(Table[mCurrentMap].playerCharacter.tilePosition.x, Table[mCurrentMap].playerCharacter.tilePosition.y));
+    mPlayerCharacter->setPosition(tileToPoint(spawnPosition.x, spawnPosition.y));
     mPlayerCharacter->setIsControlledByPlayer(true);
     mSceneLayers[Entities]->attachChild(std::move(player));
 }
@@ -132,7 +134,19 @@ void World::handleCellAction()
 
         if (Table[mCurrentMap].actionTiles.contains(tileIndex))
         {
-            mCommandQueue.push(Table[mCurrentMap].actionTiles.at(tileIndex));
+            Table[mCurrentMap].actionTiles.contains(tileIndex);
+            mNextMap = Table[mCurrentMap].actionTiles.at(tileIndex).mapId;
+            mNextSpawnPosition = Table[mCurrentMap].actionTiles.at(tileIndex).spawnPosition;
         } 
     }
+}
+
+TilesetNode::Map World::getNextMap()
+{
+    return mNextMap;
+}
+
+sf::Vector2i World::getNextSpawnPosition()
+{
+    return mNextSpawnPosition;
 }

@@ -18,18 +18,22 @@
 
 class World : private sf::NonCopyable {
     public:
-                                            World(sf::RenderTarget& outputTarget, TilesetNode::Map currentMap);
+                                            World(sf::RenderTarget& outputTarget, TilesetNode::Map currentMap, sf::Vector2i spawnPosition);
         void                                update(sf::Time dt);
         void                                draw();
         
         CommandQueue&                       getCommandQueue();
+        TilesetNode::Map                    getNextMap();
+        sf::Vector2i                        getNextSpawnPosition();
+
 
     private:
         void                                loadTextures();
-        void                                buildScene();
+        void                                buildScene(sf::Vector2i spawnPosition);
         void                                addCharacters();
         void                                handleCollisions();
         void                                handleCellAction();
+        
 
     private:
         enum Layer
@@ -51,6 +55,8 @@ class World : private sf::NonCopyable {
         Character*                          mPlayerCharacter;
         TilesetNode*                        mTileset;
         TilesetNode::Map                    mCurrentMap;
+        TilesetNode::Map                    mNextMap;
+        sf::Vector2i                        mNextSpawnPosition;
 };
 
 

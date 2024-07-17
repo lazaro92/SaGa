@@ -40,6 +40,8 @@ class Player
 
         void                    setCurrentMap(TilesetNode::Map currentMap);
         TilesetNode::Map        getCurrentMap();
+        void                    setCurrentSpawnPosition(sf::Vector2i spawnPosition);
+        sf::Vector2i            getCurrentSpawnPosition();
 
     private:
         void                    initializeActions();
@@ -51,6 +53,7 @@ class Player
         std::map<Action, Command>              mActionBinding;
 
         TilesetNode::Map                       mCurrentMap;
+        sf::Vector2i                           mCurrentSpawnPosition;
 };
 
 #endif // GAME_PLAYER_HPP
