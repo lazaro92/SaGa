@@ -149,7 +149,7 @@ void Character::stopMoving() {
 void Character::updateMovementSprite(sf::Time dt)
 {
     mMovementSpriteChangeTime += dt;
-    float movementTime = (mIsMoving == 2) ? .2f: .4f;
+    float movementTime = (mIsMoving == 2) ? .3f: .4f;
 
     if (mMovementSpriteChangeTime >= sf::seconds(movementTime))
     {
