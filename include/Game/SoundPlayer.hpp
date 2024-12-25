@@ -5,17 +5,18 @@
 #include <Game/ResourceIdentifiers.hpp>
 
 #include <SFML/System/Vector2.hpp>
-#include <SFML/System/NonCopyable.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
 #include <SFML/Audio/Sound.hpp>
 
 #include <list>
 
 
-class SoundPlayer : private sf::NonCopyable
+class SoundPlayer
 {
     public:
                                     SoundPlayer();
+                                    SoundPlayer(const SoundPlayer& temp_obj) = delete; 
+                                    SoundPlayer& operator=(const SoundPlayer& temp_obj) = delete; 
 
         void                        play(SoundEffect::ID effect);
         void                        play(SoundEffect::ID effect, sf::Vector2f position);

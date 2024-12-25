@@ -10,15 +10,19 @@
 #include <Game/CommandQueue.hpp>
 #include <Game/Command.hpp>
 
-#include <SFML/System/NonCopyable.hpp>
 #include <SFML/Graphics/View.hpp>
 #include <SFML/Graphics/Texture.hpp>
 
 
 
-class World : private sf::NonCopyable {
+class World
+{
     public:
                                             World(sf::RenderTarget& outputTarget, TilesetNode::Map currentMap, sf::Vector2i spawnPosition);
+
+                                            World(const World& temp_obj) = delete; 
+                                            World& operator=(const World& temp_obj) = delete; 
+
         void                                update(sf::Time dt);
         void                                draw();
         

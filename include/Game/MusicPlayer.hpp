@@ -4,17 +4,19 @@
 #include <Game/ResourceHolder.hpp>
 #include <Game/ResourceIdentifiers.hpp>
 
-#include <SFML/System/NonCopyable.hpp>
 #include <SFML/Audio/Music.hpp>
 
 #include <map>
 #include <string>
 
 
-class MusicPlayer : private sf::NonCopyable
+class MusicPlayer
 {
     public:
                                     MusicPlayer();
+                                    
+                                    MusicPlayer(const MusicPlayer& temp_obj) = delete; 
+                                    MusicPlayer& operator=(const MusicPlayer& temp_obj) = delete; 
 
         void                        play(Music::ID theme);
         void                        stop();
@@ -22,7 +24,6 @@ class MusicPlayer : private sf::NonCopyable
         void                        setPaused(bool paused);
         void                        setVolume(float volume);
         bool                        isPlayingTheme(Music::ID theme);
-
 
     private:
         sf::Music                           mMusic;

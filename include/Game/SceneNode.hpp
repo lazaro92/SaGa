@@ -3,7 +3,6 @@
 
 #include <Game/Category.hpp>
 
-#include <SFML/System/NonCopyable.hpp>
 #include <SFML/System/Time.hpp>
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/Drawable.hpp>
@@ -17,13 +16,17 @@
 struct Command;
 class CommandQueue;
 
-class SceneNode : public sf::Transformable, public sf::Drawable, private sf::NonCopyable
+class SceneNode : public sf::Transformable, public sf::Drawable
 {
     public:
         typedef std::unique_ptr<SceneNode> Ptr;
 
     public:
         explicit                SceneNode(Category::Type category = Category::None);
+
+                                SceneNode(const SceneNode& temp_obj) = delete; 
+                                SceneNode& operator=(const SceneNode& temp_obj) = delete; 
+
 
         void                    attachChild(Ptr child);
         Ptr                     detachChild(const SceneNode& node);

@@ -5,7 +5,6 @@
 #include <Game/StateIdentifiers.hpp>
 #include <Game/ResourceIdentifiers.hpp>
 
-#include <SFML/System/NonCopyable.hpp>
 #include <SFML/System/Time.hpp>
 
 #include <vector>
@@ -20,7 +19,7 @@ namespace sf
     class RenderWindow;
 }
 
-class StateStack : private sf::NonCopyable
+class StateStack
 {
     public:
         enum Action
@@ -33,6 +32,9 @@ class StateStack : private sf::NonCopyable
 
     public:
         explicit            StateStack(State::Context context);
+
+                            StateStack(const StateStack& temp_obj) = delete; 
+                            StateStack& operator=(const StateStack& temp_obj) = delete; 
 
         template <typename T>
         void                registerState(States::ID stateID);

@@ -1,7 +1,6 @@
 #ifndef GAME_COMPONENT_HPP
 #define GAME_COMPONENT_HPP
 
-#include <SFML/System/NonCopyable.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Transformable.hpp>
 
@@ -19,7 +18,7 @@ namespace GUI
 /**
 * Basic class for GUI components.
 */
-class Component : public sf::Drawable, public sf::Transformable, private sf::NonCopyable
+class Component : public sf::Drawable, public sf::Transformable
 {
     public:
         typedef std::shared_ptr<Component> Ptr;
@@ -28,6 +27,9 @@ class Component : public sf::Drawable, public sf::Transformable, private sf::Non
 	public:
 							Component();
         virtual				~Component();
+
+                            Component(const Component& temp_obj) = delete; 
+                            Component& operator=(const Component& temp_obj) = delete; 
 
         virtual bool		isSelectable() const = 0;
 		bool				isSelected() const;
