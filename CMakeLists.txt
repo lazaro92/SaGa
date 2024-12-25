@@ -50,7 +50,7 @@ target_include_directories(SaGa_exe
   "include"
 )
   
-target_link_libraries(SaGa_exe PRIVATE sfml-graphics sfml-audio)
+target_link_libraries(SaGa_exe PRIVATE SFML::Graphics SFML::Audio)
 
 add_custom_command(TARGET SaGa_exe PRE_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory
