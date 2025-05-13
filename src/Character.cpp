@@ -137,13 +137,12 @@ bool Character::hasFinishedMoving()
 
 
 void Character::startMoving() {
-    if (mIsMoving == 2) return;
     mIsMoving = 2;
 }
 
 void Character::stopMoving() {
-   mIsMoving = 0;
-   mDestinationPosition = mOriginalPosition;
+    mIsMoving = 0;
+    mDestinationPosition = mOriginalPosition;
 }
 
 void Character::updateMovementSprite(sf::Time dt)
@@ -186,6 +185,5 @@ void Character::processDisplacement(sf::Time dt)
         mOriginalPosition = mDestinationPosition;
         mMoveTime = 0.f;
     }
-
 }
 
