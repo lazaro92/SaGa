@@ -9,6 +9,7 @@ A modern port of the SaGa game released by SquareSoft for the GameBoy and Wonder
 - [Project requirements](#project-requirements)
 - [Build](#build)
 - [How to play](#how-to-play)
+- [Videos](#videos)
 - [Screenshots](#screenshoots)
 
 ## About the game
@@ -47,6 +48,10 @@ Controls:
 
 - Arrows: moves the character.
 - Escape: Enter pause and display the pause menu.
+
+## Videos
+
+[![Sample video](https://img.youtube.com/vi/Czd5g_mQyn0/0.jpg)](https://www.youtube.com/watch?v=Czd5g_mQyn0)
 
 ## Screenshoots
 
