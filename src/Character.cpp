@@ -20,7 +20,7 @@ namespace
 }
 
 
-Character::Character(Type type, Direction direction, const TextureHolder& textures)
+Character::Character(Type type, Direction direction, const TextureHolder& textures, unsigned int id)
 : Entity()
 , mType(type)
 , mSprite(textures.get(Table[type].texture), Table[type].textureRect)
@@ -32,6 +32,7 @@ Character::Character(Type type, Direction direction, const TextureHolder& textur
 , mIsControlledByPlayer(false)
 , mIsMoving(0)
 , mMoveTime(0.f)
+, mId(id)
 {
     centerOrigin(mSprite);
     setDirection(direction);
@@ -91,6 +92,11 @@ sf::Vector2f Character::getOriginalPosition()
 sf::Vector2f Character::getDestinationPosition()
 {
     return mDestinationPosition;
+}
+
+unsigned int Character::getId()
+{
+    return mId;
 }
 
 void Character::setIsControlledByPlayer(bool isControlledByPlayer)

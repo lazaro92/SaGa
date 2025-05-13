@@ -35,7 +35,7 @@ class Character : public Entity
 
 
     public:
-                                Character(Type type, Direction direction, const TextureHolder& textures);
+                                Character(Type type, Direction direction, const TextureHolder& textures, unsigned int id);
 
         virtual unsigned int    getCategory() const;
 
@@ -45,6 +45,7 @@ class Character : public Entity
         sf::Vector2f            getOriginalPosition();
         sf::Vector2f            getDestinationPosition();
         void                    setIsControlledByPlayer(bool isControlledByPlayer);
+        unsigned int            getId();
         
         void                    requestMove(Direction direction);
         void                    startMoving();
@@ -72,6 +73,7 @@ class Character : public Entity
         bool                    mIsControlledByPlayer;
         unsigned int            mIsMoving; // 0 not moving | 1 request move | 2 moving | 3 finish move
         float                   mMoveTime;
+        unsigned int            mId;     
 };
 
 #endif // GAME_CHARACTER_HPP

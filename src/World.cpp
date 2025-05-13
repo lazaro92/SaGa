@@ -85,7 +85,7 @@ void World::buildScene(sf::Vector2i spawnPosition)
     addCharacters();
 
     // Add player's character
-    std::unique_ptr<Character> player(new Character(Table[mCurrentMap].playerCharacter.type, Table[mCurrentMap].playerCharacter.direction, mTextures));
+    std::unique_ptr<Character> player(new Character(Table[mCurrentMap].playerCharacter.type, Table[mCurrentMap].playerCharacter.direction, mTextures, 1));
     mPlayerCharacter = player.get();
     mPlayerCharacter->setPosition(tileToPoint(spawnPosition.x, spawnPosition.y));
     mPlayerCharacter->setIsControlledByPlayer(true);
@@ -93,10 +93,11 @@ void World::buildScene(sf::Vector2i spawnPosition)
 }
 
 void World::addCharacters() {
+    int id = 1;
 
     for(auto& sceneCharacterData : Table[mCurrentMap].characters)
     {
-        std::unique_ptr<Character> character(new Character(sceneCharacterData.type, sceneCharacterData.direction, mTextures));
+        std::unique_ptr<Character> character(new Character(sceneCharacterData.type, sceneCharacterData.direction, mTextures, ++id));
         character.get()->setPosition(tileToPoint(sceneCharacterData.tilePosition.x, sceneCharacterData.tilePosition.y));
         mSceneLayers[Entities]->attachChild(std::move(character));
     }
@@ -113,10 +114,27 @@ void World::handleCollisions()
             sf::Vector2f destinationPosition = character.getDestinationPosition();
             sf::Vector2i destinationCell = pointToTile(destinationPosition.x, destinationPosition.y);
             
-            if (mTileset->isWalkable(destinationCell.x, destinationCell.y))
-                character.startMoving();
-            else 
+            if (!mTileset->isWalkable(destinationCell.x, destinationCell.y))
                 character.stopMoving();
+            else
+            {
+                bool canMove = true;
+                for (auto& child : mSceneLayers[Entities]->getChilds())
+                {
+                    auto& chr = static_cast<Character&>(*child.get());
+
+                    if (character.getId() == chr.getId())
+                        continue;
+
+                    if (character.getDestinationPosition() == chr.getOriginalPosition())
+                        canMove = false;
+                }
+                
+                if (canMove)
+                    character.startMoving();
+                else
+                    character.stopMoving();
+            }
         }
     });
     

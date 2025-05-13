@@ -27,6 +27,7 @@ class SceneNode : public sf::Transformable, public sf::Drawable, private sf::Non
 
         void                    attachChild(Ptr child);
         Ptr                     detachChild(const SceneNode& node);
+        std::vector<Ptr>&       getChilds();
         
         void                    update(sf::Time dt, CommandQueue& commands);
 
