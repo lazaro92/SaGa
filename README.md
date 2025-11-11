@@ -49,8 +49,8 @@ The steps for building the game are:
 1. Create the build folder and cd build in the root directory of the project
 2. Inside the build folder create the build files cmake ..
 3. Build the project cmake --build . (it generates a src inside build folder)
-4. Move the compiled SFML dll s from `SaGa\build\_deps\sfml-build\lib\Debug` to `SaGa\build\Debug`
-5. Download  [SFML 2.7](https://www.sfml-dev.org/files/SFML-2.6.2-windows-vc17-64-bit.zip), get the `openal32.dll` and move to `SaGa\build\Debug` where there is the SFML dlls and the executable.
+4. Move the compiled SFML dll s from `SaGa\build\_deps\sfml-build\lib\Debug` to `SaGa\build\Debug` (`sfml-audio-d-2.dll`, `sfml-graphics-d-2.dll`, `sfml-system-d-2.dll`, `sfml-window-d-2.dll`)
+5. Download  [SFML 2.7](https://www.sfml-dev.org/files/SFML-2.6.2-windows-vc17-64-bit.zip), get the `openal32.dll` and move to `SaGa\build\Debug` where there is the SFML dlls and the executable
 6. You can double click the executable directly to play or continue with next steps.
 7. Open the generated VS solution in the build folder with VS.
 8. Select the Saga_Exe from the Solution Explorer and *Set up as Start project* (right click option)
