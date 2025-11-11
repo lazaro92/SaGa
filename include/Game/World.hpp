@@ -14,6 +14,8 @@
 #include <SFML/Graphics/View.hpp>
 #include <SFML/Graphics/Texture.hpp>
 
+#include <array>
+
 
 
 class World : private sf::NonCopyable {

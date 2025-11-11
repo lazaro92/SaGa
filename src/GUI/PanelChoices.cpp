@@ -4,7 +4,11 @@
 
 #include <SFML/Window/Event.hpp>
 
-#include <cmath>
+#if _WIN32
+    #include <cstdlib>
+#else // LINUX & MAC
+    #include <cmath>
+#endif
 
 
 namespace GUI
@@ -143,7 +147,11 @@ void PanelChoices::selectPreviousLine()
     if (!hasSelection())
         return;
 
-    int prev = abs(mSelectedChild - mColumns) % mChildren.size();
+    #if _WIN32
+    int prev = std::abs(int(mSelectedChild - mColumns)) % mChildren.size();
+    #else // LINUX & MAC
+    int prev = std::abs(mSelectedChild - mColumns) % mChildren.size();
+    #endif
 
     select(prev);
 }
