@@ -30,17 +30,32 @@ You can track my activity by checking the Issues tab.
 - A C++20 compiler
 - CMake 3.28
 
-**Note:** It has only been tested and developed under Linux.
+**Note:** It has only been tested and developed under Linux. (11/11/2025 compiled on Windows to -> VS 2022)
 
 ## Build
 
 The steps for building the game are:
+
+### Linux
 
 1. Create the build folder and cd build in the root directory of the project
 2. Inside the build folder create the build files cmake ..
 3. Build the project cmake --build . (it generates a src inside build folder)
 4. Copy the media folder from root directory to the generated media folder inside build cp ../media/ ./src/media/
 5. Execute the project with `./SaGa_exe`
+
+### Windows (VS 2022)
+
+1. Create the build folder and cd build in the root directory of the project
+2. Inside the build folder create the build files cmake ..
+3. Build the project cmake --build . (it generates a src inside build folder)
+4. Move the compiled SFML dll s from `SaGa\build\_deps\sfml-build\lib\Debug` to `SaGa\build\Debug`
+5. Download  [SFML 2.7](https://www.sfml-dev.org/files/SFML-2.6.2-windows-vc17-64-bit.zip), get the `openal32.dll` and move to `SaGa\build\Debug` where there is the SFML dlls and the executable.
+6. You can double click the executable directly to play or continue with next steps.
+7. Open the generated VS solution in the build folder with VS.
+8. Select the Saga_Exe from the Solution Explorer and *Set up as Start project* (right click option)
+9. Select the Saga_Exe from the Solution Explorer and click *Properties* from right click.
+10. In the popup go to *Configuration Properties* > *Debugging* > *Working Directory* set to .\Debug
 
 ## How to Play
 
